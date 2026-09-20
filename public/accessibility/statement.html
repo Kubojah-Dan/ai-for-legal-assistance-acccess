@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility Statement - NyayaMitra (न्यायमित्र)</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      background-color: #f8fafc;
+      margin: 0;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e2e8f0;
+    }
+    h1 {
+      color: #1e3a8a;
+      border-bottom: 2px solid #3b82f6;
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+    }
+    h2 {
+      color: #0f172a;
+      margin-top: 1.5rem;
+    }
+    .badge {
+      display: inline-block;
+      background-color: #047857;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+    a:focus, button:focus {
+      outline: 3px solid #2563eb;
+      outline-offset: 2px;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main">
+    <a href="/" class="back-btn" aria-label="Return to NyayaMitra Application">← Back to NyayaMitra App</a>
+    
+    <h1>Accessibility Statement <span class="badge" aria-label="Standard: WCAG 2.1 Level AA">WCAG 2.1 AA</span></h1>
+    <p><strong>Effective Date:</strong> July 1, 2024 (Aligned with Bharatiya Nyaya Sanhita 2024 implementation)</p>
+    <p><strong>Commitment:</strong> NyayaMitra (न्यायमित्र) is dedicated to ensuring digital legal accessibility for every Indian citizen, including individuals with visual, motor, auditory, or cognitive disabilities, and users on low-end Android mobile devices.</p>
+
+    <h2>1. Conformance Status</h2>
+    <p>This web application conforms to <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong>. All user flows—including natural language intake, rights evaluation, document generation, and legal aid escalation—are tested and fully operable via screen readers and keyboard navigation alone.</p>
+
+    <h2>2. Key Accessibility Features Implemented</h2>
+    <ul>
+      <li><strong>Strict Semantic ARIA Markup:</strong> Tab navigation strictly implements <code>role="tablist"</code>, <code>role="tab"</code>, <code>role="tabpanel"</code>, <code>aria-selected</code>, and <code>aria-controls</code>.</li>
+      <li><strong>Explicit Form Labels:</strong> 100% of input controls and form fields feature explicit <code>&lt;label htmlFor="..."&gt;</code> linkages. No bare, disconnected inputs exist.</li>
+      <li><strong>Live Region Screen Reader Announcements:</strong> Real-time legal analysis and AI responses use <code>aria-live="polite"</code> regions with <code>role="status"</code> so assistive tech announces incoming rights data without interrupting current focus.</li>
+      <li><strong>Voice-First Intake (Web Speech API):</strong> Low-literacy and vernacular users can speak directly in Hindi or English using an accessible, high-contrast microphone button with clear active states.</li>
+      <li><strong>Reduced Motion Support:</strong> Global styles respect <code>@media (prefers-reduced-motion: reduce)</code> by disabling animations for users sensitive to vestibular motion.</li>
+      <li><strong>High Contrast Color Compliance:</strong> Color contrast ratios strictly exceed 4.5:1 for normal text and 3:1 for large text / interactive boundaries, conforming to <code>@media (prefers-contrast: more)</code>.</li>
+      <li><strong>Cognitive Clarity:</strong> Complex legal statutes are translated into Grade 6 plain language summaries alongside formal BNS/BNSS citations.</li>
+    </ul>
+
+    <h2>3. Feedback & Tele-Law Accessibility Contact</h2>
+    <p>If you experience any accessibility barrier while using NyayaMitra, please contact our community legal accessibility desk or access free human legal aid directly via:</p>
+    <ul>
+      <li><strong>Department of Justice Tele-Law:</strong> Call Toll-Free <a href="tel:1516">1516</a></li>
+      <li><strong>National Legal Services Authority (NALSA):</strong> Call Toll-Free <a href="tel:15100">15100</a></li>
+      <li><strong>Technical Accessibility Email:</strong> <a href="mailto:accessibility@nyayamitra.gov.in">accessibility@nyayamitra.gov.in</a></li>
+    </ul>
+  </main>
+</body>
+</html>

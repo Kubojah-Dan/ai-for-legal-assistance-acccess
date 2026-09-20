@@ -1,1 +1,138 @@
-h1 { font-family: Arial, Helvetica, sans-serif; }
+/* NyayaMitra Accessible Stylesheet conforming to WCAG 2.1 AA */
+
+:root {
+  --primary-blue: #1e3a8a;
+  --primary-focus: #2563eb;
+  --bg-color: #f8fafc;
+  --text-main: #0f172a;
+}
+
+/* 1. Skip Link (Visible upon keyboard Tab) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: #1e3a8a;
+  color: #ffffff;
+  padding: 10px 16px;
+  font-weight: 700;
+  border-radius: 6px;
+  z-index: 100;
+  text-decoration: none;
+  transition: top 0.2s ease-in-out;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.skip-link:focus {
+  top: 10px;
+  outline: 3px solid #f97316;
+  outline-offset: 2px;
+}
+
+/* 2. Strict Focus Visibility for Keyboard Navigation (Zero-Tolerance WCAG 2.1 AA) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 3px solid #2563eb !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3) !important;
+}
+
+/* 3. ARIA Tabs Styling */
+.pipeline-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 2px solid transparent;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.pipeline-tab:hover {
+  color: #1e3a8a;
+  background-color: #f1f5f9;
+}
+
+.pipeline-tab.active {
+  color: #1e3a8a;
+  border-bottom: 3px solid #1e3a8a;
+  background-color: #ffffff;
+}
+
+.pipeline-tab .tab-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background-color: #e2e8f0;
+  color: #475569;
+  font-size: 0.75rem;
+  margin-right: 0.5rem;
+  font-weight: 800;
+}
+
+.pipeline-tab.active .tab-step {
+  background-color: #1e3a8a;
+  color: #ffffff;
+}
+
+/* 4. Scenario Pills */
+.scenario-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.scenario-pill:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+/* 5. Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 6. High Contrast Support */
+@media (prefers-contrast: more) {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  
+  .pipeline-tab.active {
+    border-bottom: 4px solid #000000 !important;
+    color: #000000 !important;
+  }
+  
+  a, button {
+    border: 2px solid #000000 !important;
+  }
+  
+  input, textarea, select {
+    border: 2px solid #000000 !important;
+  }
+}

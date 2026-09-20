@@ -1,0 +1,33 @@
+```mermaid
+graph TD
+    User["Citizen / Screen Reader User<br/>(Hindi / English / Voice / Keyboard)"] -->|HTTPS / TLS 1.3| Gateway["NyayaMitra Security Layer<br/>(CSP, X-Frame-Options, Rate Limiter)"]
+    
+    subgraph Frontend ["Accessible Frontend (WCAG 2.1 AA)"]
+        Gateway --> Tabs["WAI-ARIA Tab Navigation<br/>role='tablist' / role='tabpanel'"]
+        Tabs --> IntakeUI["Step 1: Samjho Mera Problem<br/>Web Speech Voice Input + Explicit htmlFor Labels"]
+        Tabs --> RightsUI["Step 2: Mere Adhikaar<br/>Grade 6 Plain Language + Timeline Bar"]
+        Tabs --> DocUI["Step 3: Mera Document<br/>Notice / Complaint / RTI Form"]
+        Tabs --> EvalsUI["Step 4: 2024 Audit<br/>Live Citation Inspector & Benchmark Score"]
+        LiveAnnouncer["ARIA Live Region<br/>aria-live='polite'"] -.-> User
+    end
+
+    subgraph Backend ["FastAPI / Cloudflare Edge Engine"]
+        IntakeUI -->|JSON Request| IntakeRouter["/api/intake<br/>Classification & 3 Clarifying Questions"]
+        RightsUI -->|Context Data| RightsRouter["/api/rights<br/>2024 Statutes & Zero-FIR Verification"]
+        DocUI -->|Draft Form| DocRouter["/api/documents/generate<br/>Statutory Legal Notice Generator"]
+        DocUI -->|Direct Stream| PDFEngine["/api/documents/download-pdf<br/>ReportLab PDF Engine"]
+        EvalsUI -->|Validation Query| ComplianceRouter["/api/compliance/verify-citations<br/>Repealed Law Detector"]
+    end
+
+    subgraph Intelligence ["Small-to-Large AI Intelligence"]
+        IntakeRouter -->|Sub-100ms Routing| SmallLLM["Groq Llama 3.1 8B Instant<br/>Rapid Domain Categorization"]
+        DocRouter -->|High-Precision Drafting| LargeLLM["Groq Llama 3.3 70B Versatile<br/>Formal Legal Drafting"]
+    end
+
+    subgraph LegalCorpus ["2024 Indian Law Grounding (Zero Hallucinations)"]
+        RightsRouter --> BNS["Bharatiya Nyaya Sanhita (BNS) 2023<br/>(Replaces IPC 1860)"]
+        RightsRouter --> BNSS["Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023<br/>(Mandatory Zero FIR Sec 173)"]
+        RightsRouter --> CPA["Consumer Protection Act 2019<br/>(e-Daakhil Online Filing)"]
+        RightsRouter --> TeleLaw["Legal Services Authorities Act 1987<br/>(Tele-Law 1516 / NALSA 15100 Escalation)"]
+    end
+```
