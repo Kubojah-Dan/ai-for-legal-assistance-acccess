@@ -1,5 +1,5 @@
 {
-  "name": "webapp",
+  "name": "nyaya-mitra-frontend",
   "type": "module",
   "scripts": {
     "dev": "vite",

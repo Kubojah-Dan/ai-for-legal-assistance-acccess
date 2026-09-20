@@ -1,33 +1,38 @@
-# prod
+# JavaScript / Vite / Cloudflare build artifacts
+frontend/node_modules/
+frontend/dist/
+frontend/.wrangler/
+node_modules/
 dist/
+.wrangler/
 
-# dev
-.yarn/
-!.yarn/releases
+# Python environments, caches, coverage, and test output
+backend/venv/
+backend/.venv/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+.coverage
+htmlcov/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.local
+.dev.vars
+
+# Editor and operating-system files
 .vscode/*
 !.vscode/launch.json
 !.vscode/*.code-snippets
-.idea/workspace.xml
-.idea/usage.statistics.xml
-.idea/shelf
+.idea/
+.DS_Store
+Thumbs.db
 
-# deps
-node_modules/
-.wrangler
-
-# env
-.env
-.env.production
-.dev.vars
-
-# logs
+# Logs
 logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
-
-# misc
-.DS_Store

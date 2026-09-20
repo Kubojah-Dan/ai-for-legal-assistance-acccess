@@ -77,7 +77,7 @@ for idx, (query, domain, statute, answer) in enumerate(scenarios, start=1):
     })
 
 os.makedirs("/home/user/webapp/backend/evals", exist_ok=True)
-with open("/home/user/webapp/backend/evals/legal_queries.json", "w", encoding="utf-8") as f:
+with open(os.path.join(os.path.dirname(__file__), "legal_queries.json"), "w", encoding="utf-8") as f:
     json.dump(evals, f, indent=2, ensure_ascii=False)
 
 print(f"Generated {len(evals)} evaluation queries.")

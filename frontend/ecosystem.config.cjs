@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'webapp',
+      name: 'nyaya-mitra-frontend',
       script: 'npx',
       args: 'wrangler pages dev dist --ip 0.0.0.0 --port 3000',
       env: {

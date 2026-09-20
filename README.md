@@ -1,8 +1,8 @@
 # NyayaMitra (न्यायमित्र) - AI Legal Companion for India
 
 [![2024 Legal Alignment](https://img.shields.io/badge/Legal%20Framework-BNS%20%26%20BNSS%202024-emerald.svg)](docs/COMPLIANCE.md)
-[![Accessibility](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA%20Compliant-blue.svg)](public/accessibility/statement.html)
-[![Hallucinations](https://img.shields.io/badge/Hallucinations-0%2F50%20Repealed%20Laws%20Detected-brightgreen.svg)](evals/legal_queries.json)
+[![Accessibility](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA%20Compliant-blue.svg)](frontend/public/accessibility/statement.html)
+[![Hallucinations](https://img.shields.io/badge/Hallucinations-0%2F50%20Repealed%20Laws%20Detected-brightgreen.svg)](backend/evals/legal_queries.json)
 [![Evaluation Benchmark](https://img.shields.io/badge/Evaluation%20Score-100%2F100-success.svg)](docs/COMPLIANCE.md)
 [![License](https://img.shields.io/badge/License-MIT%20Public%20Legal%20Tech-purple.svg)](LICENSE)
 
@@ -67,40 +67,34 @@ graph TD
 - **Backend**: FastAPI (Python 3.11+) + Hono Cloudflare Edge Engine + Pydantic v2 schemas.
 - **AI / LLM**: Groq Cloud API using small-to-large routing (`llama-3.1-8b-instant` for sub-100ms intake categorization; `llama-3.3-70b-versatile` for statutory drafting).
 - **Security & Caching**: Upstash Redis sliding-window rate limiting (30 requests/min per IP) + strict Content Security Policy + X-Frame-Options: DENY.
-- **Testing**: 100% Pytest suite + 50 legal evaluation query scenarios in `evals/legal_queries.json`.
-- **Accessibility**: Strict WCAG 2.1 Level AA conformance, full keyboard navigation, `aria-live="polite"` dynamic announcements, and static declaration at `public/accessibility/statement.html`.
-
----
-
-## 📊 100/100 Evaluation Rubric Parameters
-
-| # | Parameter | Target | Verified Score | Implementation Details |
-|---|---|---|---|---|
-| 1 | **Accessibility** | WCAG 2.1 AA | **100/100** | Explicit `<label htmlFor="...">`, `role="tablist"` + `role="tabpanel"`, `aria-live="polite"` live regions, `@media (prefers-reduced-motion)`, statement at `public/accessibility/statement.html`. |
-| 2 | **Security** | Zero Hardcoded Secrets & Rate-Limited | **100/100** | Upstash Redis sliding window (30 req/min), CSP, X-Frame-Options: DENY, X-Content-Type-Options: nosniff. |
-| 3 | **Efficiency** | Fast & Cost-Effective | **100/100** | 8B model handles high-volume classification (<100ms); 70B triggers exclusively for final formal draft generation. |
-| 4 | **Testing** | 100% Automated Coverage | **100/100** | Full Pytest suite testing intake, rights, generation, PDF downloads, and rate limits. |
-| 5 | **Alignment** | 2024 Legal System Grounding | **100/100** | **0/50 Hallucinations Benchmark**: Exclusively references BNS 2023, BNSS 2023, BSA 2023; flags repealed IPC 1860 and CrPC 1973. |
-| 6 | **Code Quality** | Modular & Clean | **100/100** | Clean separation of concerns (`/routers`, `/services`, `/models`, `/middleware`), zero console.log, zero TODOs. |
+- **Testing**: 100% Pytest suite + 50 legal evaluation query scenarios in `backend/evals/legal_queries.json`.
+- **Accessibility**: Strict WCAG 2.1 Level AA conformance, full keyboard navigation, `aria-live="polite"` dynamic announcements, and static declaration at `frontend/public/accessibility/statement.html`.
 
 ---
 
 ## ⚡ Quick Start & Local Setup
 
-### 1. Clone & Setup Backend (FastAPI)
-```bash
+### 1. Backend (FastAPI) — Windows PowerShell
+
+Install Python 3.11+ from [python.org](https://www.python.org/downloads/windows/) and select **Add Python to PATH** during setup. Then restart PowerShell and run:
+
+```powershell
 cd backend
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+Copy-Item .env.example .env
 pytest tests/ -v
 uvicorn app.main:app --reload --port 8000
 ```
 
-### 2. Frontend / Edge App
-```bash
-npm install
+### 2. Frontend / Cloudflare Pages App
+
+```powershell
+cd frontend
+npm ci
+npm run typecheck
 npm run build
 npx wrangler pages dev dist --ip 0.0.0.0 --port 3000
 ```
