@@ -76,7 +76,7 @@ graph TD
 
 ### 1. Backend (FastAPI) — Windows PowerShell
 
-Install Python 3.11+ from [python.org](https://www.python.org/downloads/windows/) and select **Add Python to PATH** during setup. Then restart PowerShell and run:
+Install Python 3.11+ from [python.org](https://www.python.org/downloads/windows/) and select **Add Python to PATH** during setup. Then restart PowerShell and run. If `python` is still not recognised, use the installed interpreter explicitly once: `& "$env:LOCALAPPDATA\Programs\Python\Python312\python.exe" -m venv .venv`.
 
 ```powershell
 cd backend
@@ -95,9 +95,19 @@ uvicorn app.main:app --reload --port 8000
 cd frontend
 npm ci
 npm run typecheck
-npm run build
+npm run builds
 npx wrangler pages dev dist --ip 0.0.0.0 --port 3000
 ```
+
+The Vite development server proxies `/api` requests to `http://127.0.0.1:8000`, so keep the backend running in a separate terminal. No API key is required for a local smoke test: the backend uses deterministic legal-data fallbacks when `GROQ_API_KEY` is empty.
+
+## Deployment: Render API + Vercel Frontend
+
+1. Push this repository to GitHub. The included `render.yaml` can create the backend service automatically, or create a Render **Web Service** manually with root directory `backend`, build command `pip install -r requirements.txt`, start command `uvicorn app.main:app --host 0.0.0.0 --port $PORT`, and health check path `/api/health`.
+2. In Render, set `ENVIRONMENT=production`, `LEGAL_YEAR_ENFORCED=2024`, `REJECT_REPEALED_IPC=true`, and `MAX_REQUESTS_PER_MINUTE=30`. Set `GROQ_API_KEY` only when you want live Groq responses. `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, `SUPABASE_URL`, and `SUPABASE_KEY` are optional for the current application and must remain server-side secrets.
+3. Deploy the frontend in Vercel: import the same repository, set **Root Directory** to `frontend`, and accept the Vite build command `npm run build` and output directory `dist`.
+4. Copy the resulting Render URL, for example `https://nyaya-mitra-api.onrender.com`. In Vercel add `VITE_API_BASE_URL` with that URL (no trailing slash) for Production, Preview, and Development, then redeploy. Vite exposes only `VITE_` variables to browser code, so never put API keys in Vercel frontend variables.
+5. Copy the Vercel production URL, then set Render `CORS_ORIGINS` to a JSON list such as `["https://your-project.vercel.app"]`. Add custom domains to the same list if you use them, then redeploy Render.
 
 ---
 

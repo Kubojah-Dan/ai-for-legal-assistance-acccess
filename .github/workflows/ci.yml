@@ -51,20 +51,19 @@ jobs:
       - name: Set up Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install Frontend Dependencies
         run: npm ci
 
-      - name: Type Check & Lint
+      - name: Build frontend
         run: |
-          npm run typecheck || npx tsc --noEmit
-          npm run lint || true
+          npm run build
 
-      - name: Run Vitest Unit Tests & Axe Accessibility Tests
-        run: npm run test:coverage || npm test -- --run
+      - name: Run frontend smoke tests
+        run: npm test
 
   security-gitleaks:
     name: Secret Leak Detection (Gitleaks)

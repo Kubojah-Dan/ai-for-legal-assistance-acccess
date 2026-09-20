@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: nyaya-mitra-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: LEGAL_YEAR_ENFORCED
+        value: "2024"
+      - key: REJECT_REPEALED_IPC
+        value: "true"
+      - key: MAX_REQUESTS_PER_MINUTE
+        value: "30"
+      - key: CORS_ORIGINS
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false

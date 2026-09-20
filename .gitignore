@@ -14,6 +14,7 @@ backend/.venv/
 **/.pytest_cache/
 .coverage
 htmlcov/
+.tmp/
 
 # Secrets and local configuration
 .env

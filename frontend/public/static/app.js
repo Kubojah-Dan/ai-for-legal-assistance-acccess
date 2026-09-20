@@ -5,6 +5,9 @@
  */
 
 (function () {
+  const configuredApiBaseUrl = window.NYAYA_API_BASE_URL || '';
+  const apiBaseUrl = configuredApiBaseUrl.startsWith('%') ? '' : configuredApiBaseUrl.replace(/\/$/, '');
+  const apiUrl = (path) => `${apiBaseUrl}${path}`;
   'use strict';
 
   // Application State
@@ -193,7 +196,7 @@
     }
 
     try {
-      const response = await fetch('/api/intake', {
+      const response = await fetch(apiUrl('/api/intake'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query, language: state.language })
@@ -381,7 +384,7 @@
 
     announce('Formulating rights grounded on 2024 Indian Law...');
     try {
-      const response = await fetch('/api/rights', {
+      const response = await fetch(apiUrl('/api/rights'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -532,7 +535,7 @@
     payload.language = state.language;
 
     try {
-      const response = await fetch('/api/documents/generate', {
+      const response = await fetch(apiUrl('/api/documents/generate'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -622,7 +625,7 @@ ${p.applicant_name}
       elements.downloadPdfBtn.onclick = async () => {
         announce('Downloading formal PDF legal notice...');
         try {
-          const resp = await fetch('/api/documents/download-pdf', {
+          const resp = await fetch(apiUrl('/api/documents/download-pdf'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -679,7 +682,7 @@ ${p.applicant_name}
     if (!text) return;
 
     try {
-      const resp = await fetch('/api/compliance/verify-citations', {
+      const resp = await fetch(apiUrl('/api/compliance/verify-citations'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text })
