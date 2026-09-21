@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.mjs",
     "test:coverage": "npm test",
     "preview": "wrangler pages dev",
@@ -18,5 +19,7 @@
     "@hono/vite-dev-server": "^0.26.1",
     "vite": "^8.1.4",
     "wrangler": "^4.110.0"
+    "typescript": "^5.3.3",
+    "@types/node": "^18.16.19"
   }
 }

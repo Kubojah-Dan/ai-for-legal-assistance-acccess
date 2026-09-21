@@ -95,7 +95,7 @@ uvicorn app.main:app --reload --port 8000
 cd frontend
 npm ci
 npm run typecheck
-npm run builds
+npm run build676s
 npx wrangler pages dev dist --ip 0.0.0.0 --port 3000
 ```
 
