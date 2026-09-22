@@ -1,16 +1,37 @@
-import os
-from typing import List
-from pydantic_settings import BaseSettings
-from pydantic import Field
+import json
+from typing import List, Union
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import Field, field_validator
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+
     ENVIRONMENT: str = Field(default="development")
     PORT: int = Field(default=8000)
     HOST: str = Field(default="0.0.0.0")
     CORS_ORIGINS: List[str] = Field(
-        default=["http://localhost:3000", "http://localhost:5173", "http://127.0.0.1:3000", "http://127.0.0.1:5173"]
+        default=["http://localhost:3000", "http://localhost:5173", "http://127.0.0.1:3000", "http://127.0.0.1:5173", "*"]
     )
+
+    @field_validator("CORS_ORIGINS", mode="before")
+    @classmethod
+    def assemble_cors_origins(cls, v: Union[str, List[str]]) -> List[str]:
+        if isinstance(v, list):
+            return v
+        if isinstance(v, str):
+            v_trimmed = v.strip()
+            if not v_trimmed:
+                return ["*"]
+            if v_trimmed.startswith("[") and v_trimmed.endswith("]"):
+                try:
+                    parsed = json.loads(v_trimmed)
+                    if isinstance(parsed, list):
+                        return parsed
+                except Exception:
+                    pass
+            return [i.strip() for i in v_trimmed.split(",") if i.strip()]
+        return ["*"]
 
     # Groq API Configuration
     GROQ_API_KEY: str = Field(default="")
@@ -31,9 +52,6 @@ class Settings(BaseSettings):
     LEGAL_YEAR_ENFORCED: int = Field(default=2024)
     REJECT_REPEALED_IPC: bool = Field(default=True)
 
-    class Config:
-        env_file = ".env"
-        extra = "ignore"
-
 
 settings = Settings()
+

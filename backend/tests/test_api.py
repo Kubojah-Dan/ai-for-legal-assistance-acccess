@@ -157,3 +157,23 @@ async def test_citation_verifier_rejects_ipc():
     result_good = validate_citations(good_text)
     assert result_good["compliant_2024"] is True
     assert len(result_good["repealed_laws_detected"]) == 0
+
+
+def test_cors_origins_parsing():
+    from app.core.config import Settings
+    # Plain single domain string
+    s1 = Settings(CORS_ORIGINS="https://my-app.vercel.app")
+    assert s1.CORS_ORIGINS == ["https://my-app.vercel.app"]
+
+    # Empty string
+    s2 = Settings(CORS_ORIGINS="")
+    assert s2.CORS_ORIGINS == ["*"]
+
+    # Comma-separated list
+    s3 = Settings(CORS_ORIGINS="https://a.com, https://b.com")
+    assert s3.CORS_ORIGINS == ["https://a.com", "https://b.com"]
+
+    # JSON array string
+    s4 = Settings(CORS_ORIGINS='["https://c.com", "https://d.com"]')
+    assert s4.CORS_ORIGINS == ["https://c.com", "https://d.com"]
+
