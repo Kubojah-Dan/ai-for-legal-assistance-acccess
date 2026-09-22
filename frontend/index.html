@@ -57,8 +57,15 @@
         </div>
       </div>
 
-      <!-- Header Controls: Language Toggle & Emergency Tele-Law -->
+      <!-- Header Controls: Navigation, Language Toggle & Emergency Tele-Law -->
       <div class="flex items-center space-x-3">
+        <!-- SPA Navigation -->
+        <nav class="hidden md:flex items-center space-x-2" aria-label="Primary">
+          <a href="#home" class="text-sm font-semibold text-slate-700 hover:text-ashoka-900 px-3 py-1 rounded">Home</a>
+          <a href="#kanoon" class="text-sm font-semibold text-slate-700 hover:text-ashoka-900 px-3 py-1 rounded">Kanoon Kya Kehta Hai</a>
+          <a href="#tracker" class="text-sm font-semibold text-slate-700 hover:text-ashoka-900 px-3 py-1 rounded">Nyaya Tracker</a>
+          <a href="#sahayata" class="text-sm font-semibold text-slate-700 hover:text-ashoka-900 px-3 py-1 rounded">Sahayata</a>
+        </nav>
         <!-- Tele-Law quick badge -->
         <a href="tel:1516" class="hidden md:inline-flex items-center px-3 py-1.5 rounded-md text-xs font-bold bg-amber-50 text-amber-800 border border-amber-300 hover:bg-amber-100 focus:ring-2 focus:ring-amber-500" aria-label="Free Tele-Law Helpline 1516">
           <i class="fas fa-phone mr-1.5 text-amber-600" aria-hidden="true"></i> Tele-Law: 1516 (Free)
@@ -84,6 +91,75 @@
 
   <!-- Main Pipeline Container -->
   <main id="main-content" class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6" role="main">
+    <!-- NEW: Home / Landing Page Section -->
+    <section id="page-home" class="page active">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 items-center">
+        <div>
+          <h2 class="text-3xl font-extrabold text-ashoka-900 mb-3 hero-animate">NyayaMitra — AI Legal Companion for India</h2>
+          <p class="text-slate-700 mb-4">Free, accessible, vernacular legal help grounded in BNS & BNSS 2024. Generate ready-to-file notices, check rights, and reach human aid.</p>
+          <div class="flex gap-3">
+            <a href="#intake" class="px-5 py-3 rounded-lg bg-saffron-500 text-white font-bold shadow hover:bg-saffron-600">Get Started</a>
+            <a href="#kanoon" class="px-5 py-3 rounded-lg border border-ashoka-700 text-ashoka-700 font-bold glass-card">Ask a Law Question</a>
+          </div>
+        </div>
+        <div class="glass-card rounded-xl p-6">
+          <div class="text-sm text-slate-600">Impact</div>
+          <div class="mt-3 grid grid-cols-3 gap-3 text-center">
+            <div class="p-4 bg-white rounded-lg shadow-sm">
+              <div class="text-2xl font-extrabold text-ashoka-900">5.2Cr+</div>
+              <div class="text-xs text-slate-500">Pending Cases</div>
+            </div>
+            <div class="p-4 bg-white rounded-lg shadow-sm">
+              <div class="text-2xl font-extrabold text-emerald-600">₹0</div>
+              <div class="text-xs text-slate-500">Cost for Basic Advice</div>
+            </div>
+            <div class="p-4 bg-white rounded-lg shadow-sm">
+              <div class="text-2xl font-extrabold text-saffron-600">2024</div>
+              <div class="text-xs text-slate-500">BNS / BNSS Active</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: Kanoon Kya Kehta Hai (Law Explainer) -->
+    <section id="page-kanoon" class="page">
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
+        <h3 class="text-xl font-bold">Kanoon Kya Kehta Hai — Ask a Law Question</h3>
+        <p class="text-sm text-slate-600 mb-3">Type any legal question and get a plain-language answer grounded in 2024 statutes.</p>
+        <div class="flex gap-3">
+          <input id="kanoon-input" class="flex-1 px-3 py-2 border rounded" placeholder="e.g. Can my landlord evict me without notice?">
+          <button id="kanoon-ask" class="px-4 py-2 bg-ashoka-700 text-white rounded">Ask</button>
+        </div>
+        <div id="kanoon-result" class="mt-4 text-sm text-slate-700"></div>
+      </div>
+    </section>
+
+    <!-- NEW: Nyaya Tracker -->
+    <section id="page-tracker" class="page">
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
+        <h3 class="text-xl font-bold">Nyaya Tracker — Case Status Checker</h3>
+        <p class="text-sm text-slate-600 mb-3">Enter your case number or FIR and get quick links to court portals and next steps.</p>
+        <div class="flex gap-3">
+          <input id="tracker-input" class="flex-1 px-3 py-2 border rounded" placeholder="e.g. Case No: ABC/2024/12345">
+          <button id="tracker-check" class="px-4 py-2 bg-saffron-500 text-white rounded">Check</button>
+        </div>
+        <div id="tracker-result" class="mt-4 text-sm text-slate-700"></div>
+      </div>
+    </section>
+
+    <!-- NEW: Sahayata (Helplines) -->
+    <section id="page-sahayata" class="page">
+      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
+        <h3 class="text-xl font-bold">Sahayata — Emergency Legal Helplines</h3>
+        <p class="text-sm text-slate-600 mb-3">One-tap calling for urgent legal assistance.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <a href="tel:1516" class="p-4 bg-amber-50 rounded-lg flex items-center justify-between">Tele-Law 1516 <span class="font-bold text-saffron-600">Call</span></a>
+          <a href="tel:15100" class="p-4 bg-emerald-50 rounded-lg flex items-center justify-between">NALSA 15100 <span class="font-bold text-emerald-600">Call</span></a>
+          <a href="tel:1930" class="p-4 bg-rose-50 rounded-lg flex items-center justify-between">Cyber Helpline 1930 <span class="font-bold text-rose-600">Call</span></a>
+        </div>
+      </div>
+    </section>
     
     <!-- Hero / Trust Banner -->
     <section class="bg-gradient-to-r from-ashoka-900 via-indigo-950 to-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-lg mb-8 relative overflow-hidden" aria-labelledby="hero-heading">

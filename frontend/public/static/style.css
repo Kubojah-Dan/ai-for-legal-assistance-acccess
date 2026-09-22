@@ -1,9 +1,15 @@
 /* NyayaMitra Accessible Stylesheet conforming to WCAG 2.1 AA */
 
 :root {
-  --primary-blue: #1e3a8a;
-  --primary-focus: #2563eb;
-  --bg-color: #f8fafc;
+  /* India's Tricolor Palette + supporting tones */
+  --saffron-500: #f97316;
+  --saffron-600: #ea580c;
+  --ashoka-900: #0f172a; /* deep navy */
+  --ashoka-700: #1e3a8a;
+  --indgreen-500: #16a34a; /* emerald */
+  --bg-color: #f7fafc;
+  --glass-bg: rgba(255,255,255,0.6);
+  --glass-border: rgba(255,255,255,0.18);
   --text-main: #0f172a;
 }
 
@@ -12,7 +18,7 @@
   position: absolute;
   top: -40px;
   left: 10px;
-  background: #1e3a8a;
+  background: var(--ashoka-700);
   color: #ffffff;
   padding: 10px 16px;
   font-weight: 700;
@@ -115,6 +121,23 @@ select:focus-visible,
     scroll-behavior: auto !important;
   }
 }
+
+/* Glassmorphism utility */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 24px rgba(16,24,40,0.06);
+}
+
+/* Page container helper */
+.page { display: none; }
+.page.active { display: block; }
+
+/* Hero animation */
+.hero-animate { animation: floatY 6s ease-in-out infinite; }
+@keyframes floatY { 0%{ transform: translateY(0);} 50%{ transform: translateY(-6px);} 100%{ transform: translateY(0);} }
 
 /* 6. High Contrast Support */
 @media (prefers-contrast: more) {

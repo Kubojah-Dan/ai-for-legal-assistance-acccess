@@ -734,6 +734,58 @@ ${p.applicant_name}
     runCitationAudit
   };
 
+  // Simple SPA Navigation between new pages
+  function initSpaNavigation() {
+    const pages = document.querySelectorAll('.page');
+    function showPage(id) {
+      pages.forEach(p => p.classList.toggle('active', p.id === id));
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        const target = href.slice(1);
+        const pageId = `page-${target}`;
+        const pageEl = document.getElementById(pageId);
+        if (pageEl) {
+          e.preventDefault();
+          showPage(pageId);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Wire quick desk controls for Kanoon & Tracker
+    const kanoonAsk = document.getElementById('kanoon-ask');
+    if (kanoonAsk) {
+      kanoonAsk.addEventListener('click', async () => {
+        const q = document.getElementById('kanoon-input').value.trim();
+        const resBox = document.getElementById('kanoon-result');
+        if (!q) return;
+        resBox.textContent = 'Searching legal guidance...';
+        try {
+          const resp = await fetch(apiUrl('/api/rights'), { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ domain: q, user_query: q, answered_context: {}, language: state.language }) });
+          const data = await resp.json();
+          resBox.textContent = data.rights && data.rights.length ? (state.language==='en'?data.rights[0].description_en:data.rights[0].description_hi) : 'No result';
+        } catch (e) {
+          resBox.textContent = 'Unable to reach server. Try again later.';
+        }
+      });
+    }
+
+    const trackerBtn = document.getElementById('tracker-check');
+    if (trackerBtn) {
+      trackerBtn.addEventListener('click', () => {
+        const v = document.getElementById('tracker-input').value.trim();
+        const r = document.getElementById('tracker-result');
+        if (!v) return;
+        // Offline demo: link to NIC e-court search (demo placeholder)
+        r.innerHTML = `Search your case on <a href="https://ecourts.gov.in/" target="_blank" rel="noopener">eCourts</a> or contact court registry. Case: <strong>${v}</strong>`;
+      });
+    }
+  }
+
   // Initialization
   document.addEventListener('DOMContentLoaded', () => {
     // Tab event bindings
@@ -766,6 +818,7 @@ ${p.applicant_name}
 
     initSpeechRecognition();
     initPresetScenarios();
+    initSpaNavigation();
   });
 
 })();
