@@ -163,17 +163,21 @@ def test_cors_origins_parsing():
     from app.core.config import Settings
     # Plain single domain string
     s1 = Settings(CORS_ORIGINS="https://my-app.vercel.app")
-    assert s1.CORS_ORIGINS == ["https://my-app.vercel.app"]
+    assert s1.cors_origins_list == ["https://my-app.vercel.app"]
 
     # Empty string
     s2 = Settings(CORS_ORIGINS="")
-    assert s2.CORS_ORIGINS == ["*"]
+    assert s2.cors_origins_list == ["*"]
 
     # Comma-separated list
     s3 = Settings(CORS_ORIGINS="https://a.com, https://b.com")
-    assert s3.CORS_ORIGINS == ["https://a.com", "https://b.com"]
+    assert s3.cors_origins_list == ["https://a.com", "https://b.com"]
 
     # JSON array string
     s4 = Settings(CORS_ORIGINS='["https://c.com", "https://d.com"]')
-    assert s4.CORS_ORIGINS == ["https://c.com", "https://d.com"]
+    assert s4.cors_origins_list == ["https://c.com", "https://d.com"]
+
+    # http://localhost:3000 — the actual value the user set on Render
+    s5 = Settings(CORS_ORIGINS="http://localhost:3000")
+    assert s5.cors_origins_list == ["http://localhost:3000"]
 
