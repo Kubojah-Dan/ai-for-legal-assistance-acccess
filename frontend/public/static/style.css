@@ -288,10 +288,49 @@ select:focus-visible,
   box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.3) !important;
 }
 
-/* Print Styles for Legal Notices */
+/* Print Styles for Legal Notices - Only output the clean document text */
 @media print {
-  body { background: white; color: black; }
-  header, footer, nav, .no-print { display: none !important; }
-  .page-view { display: block !important; opacity: 1 !important; transform: none !important; }
-  #panel-document { display: block !important; }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Hide headers, footers, navbars, cards, forms, buttons, and announcer */
+  header, footer, nav, button, input, select, label, .skip-link, #sr-announcer,
+  #page-home, #page-kanoon, #page-bns-matrix, #page-tracker, #page-sahayata,
+  .pipeline-tab, [role="tablist"], .lg\:col-span-5, #filing-instructions-list,
+  .bg-amber-50, .no-print {
+    display: none !important;
+  }
+
+  /* Show only the active page and the document preview card */
+  main, #page-assistant, #panel-document, .lg\:col-span-7 {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  #document-preview-card {
+    display: block !important;
+    visibility: visible !important;
+    width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 20px !important;
+    font-family: 'Courier New', Courier, monospace !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+    color: #000000 !important;
+    background: #ffffff !important;
+    white-space: pre-wrap !important;
+    overflow: visible !important;
+    max-height: none !important;
+  }
 }

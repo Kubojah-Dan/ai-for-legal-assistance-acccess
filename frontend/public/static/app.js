@@ -512,11 +512,11 @@
   async function generateDocument() {
     announce('Generating 2024 BNS-compliant document...');
     const docType = document.getElementById('doc-type-select')?.value || 'legal_notice_tenant';
-    const applicantName = document.getElementById('applicant-name')?.value.trim() || 'Complainant Citizen';
-    const applicantAddress = document.getElementById('applicant-address')?.value.trim() || 'City, State, India';
-    const oppositeName = document.getElementById('opposite-name')?.value.trim() || 'Opposite Party';
-    const oppositeAddress = document.getElementById('opposite-address')?.value.trim() || 'Opposite Party Address';
-    const disputedAmount = document.getElementById('disputed-amount')?.value.trim() || '50000';
+    const applicantName = document.getElementById('applicant-name')?.value.trim() || 'Kuboja Daniel';
+    const applicantAddress = document.getElementById('applicant-address')?.value.trim() || 'Kondampatti, Kinathukadavu';
+    const oppositeName = document.getElementById('opposite-name')?.value.trim() || 'James Enterprise';
+    const oppositeAddress = document.getElementById('opposite-address')?.value.trim() || 'Tirpurr, Kovai';
+    const disputedAmount = document.getElementById('disputed-amount')?.value.trim() || '40000';
 
     try {
       const res = await fetch(apiUrl('/api/documents/generate'), {
@@ -556,23 +556,98 @@
   }
 
   async function downloadPdfFile() {
-    if (!state.generatedDocText) return;
+    if (!state.generatedDocText) {
+      await generateDocument();
+    }
+    const docText = state.generatedDocText;
+    if (!docText) return;
+
+    const applicantName = document.getElementById('applicant-name')?.value.trim() || 'Kuboja Daniel';
+    const oppositeName = document.getElementById('opposite-name')?.value.trim() || 'James Enterprise';
+    const applicantAddress = document.getElementById('applicant-address')?.value.trim() || 'Kondampatti, Kinathukadavu';
+    const oppositeAddress = document.getElementById('opposite-address')?.value.trim() || 'Tirpurr, Kovai';
+    const disputedAmount = document.getElementById('disputed-amount')?.value.trim() || '40000';
+    const docType = document.getElementById('doc-type-select')?.value || 'legal_notice_tenant';
+
     try {
-      await fetch(apiUrl('/api/documents/download-pdf'), {
+      const res = await fetch(apiUrl('/api/documents/download-pdf'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: state.generatedDocText })
+        body: JSON.stringify({
+          doc_type: docType,
+          applicant_name: applicantName,
+          applicant_address: applicantAddress,
+          applicant_contact: '+91 9876543210',
+          opposite_party_name: oppositeName,
+          opposite_party_address: oppositeAddress,
+          facts_description: docText,
+          remedy_sought: 'Immediate compliance within 15 days',
+          disputed_amount: disputedAmount
+        })
       });
-    } catch (e) {}
-    window.print();
+
+      if (res.ok) {
+        const contentType = res.headers.get('content-type') || '';
+        if (contentType.includes('application/pdf')) {
+          const blob = await res.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `NyayaMitra_${docType}_${applicantName.replace(/\s+/g, '_')}.pdf`;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          window.URL.revokeObjectURL(url);
+          announce('PDF document downloaded successfully.');
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn('PDF endpoint fallback:', e);
+    }
+
+    // Direct clean print window containing ONLY the legal notice document
+    const printWin = window.open('', '_blank', 'width=800,height=900');
+    if (printWin) {
+      printWin.document.write(`<!DOCTYPE html>
+<html>
+<head>
+  <title>NyayaMitra - Statutory Legal Document</title>
+  <style>
+    body { font-family: 'Courier New', Courier, monospace; font-size: 13px; line-height: 1.6; padding: 40px; color: #111; background: #fff; white-space: pre-wrap; }
+    @media print { body { padding: 20px; } }
+  </style>
+</head>
+<body>${escapeHtml(docText)}</body>
+</html>`);
+      printWin.document.close();
+      printWin.focus();
+      setTimeout(() => {
+        printWin.print();
+        printWin.close();
+      }, 250);
+    } else {
+      window.print();
+    }
+  }
+
+  function escapeHtml(str) {
+    return (str || '')
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
   }
 
   function generateMockNoticeText(applicantName, applicantAddress, oppositeName, oppositeAddress, amount) {
-    const facts = elements.intakeQuery?.value || 'Security deposit withholding / statutory notice violation.';
+    const facts = elements.intakeQuery?.value || 'My landlord in Pune locked my flat without prior notice and is refusing to return my ₹40,000 security deposit even though my lease expires next month.';
+    const today = new Date().toISOString().split('T')[0];
+
     return `BEFORE THE COMPETENT LEGAL FORUM / NOTICEE
 FORMAL STATUTORY LEGAL NOTICE (2024 BNS & BNSS COMPLIANT)
 
-DATE: ${new Date().toISOString().split('T')[0]}
+DATE: ${today}
 
 TO:
 ${oppositeName}
@@ -606,11 +681,43 @@ ${applicantName}
 (Complainant / Noticee)`;
   }
 
-  function copyDocumentText() {
-    if (!state.generatedDocText) return;
-    navigator.clipboard.writeText(state.generatedDocText).then(() => {
+  async function copyDocumentText() {
+    if (!state.generatedDocText) {
+      await generateDocument();
+    }
+    const textToCopy = state.generatedDocText;
+    if (!textToCopy) return;
+
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(textToCopy);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+
+      const btn = document.getElementById('copy-doc-btn');
+      if (btn) {
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check mr-1 text-emerald-300"></i> Copied!';
+        btn.classList.remove('bg-slate-800');
+        btn.classList.add('bg-emerald-700');
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+          btn.classList.remove('bg-emerald-700');
+          btn.classList.add('bg-slate-800');
+        }, 2500);
+      }
+      announce('Legal document text copied to clipboard.');
+    } catch (err) {
       alert('Document text copied to clipboard!');
-    });
+    }
   }
 
   // Feature 2: Kanoon Kya Kehta Hai Search

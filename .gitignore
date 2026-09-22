@@ -4,6 +4,7 @@ frontend/dist/
 frontend/.wrangler/
 node_modules/
 dist/
+.sf/
 .wrangler/
 
 # Python environments, caches, coverage, and test output
