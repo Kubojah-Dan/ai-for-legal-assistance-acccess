@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NyayaMitra (न्यायमित्र) - AI Legal Companion for India</title>
-  <meta name="description" content="Accessible, vernacular AI legal companion for everyday Indian citizens strictly grounded on the 2024 Indian Criminal & Consumer Laws (BNS, BNSS, BSA, CPA 2019).">
+  <title>NyayaMitra (न्यायमित्र) - AI Legal Access & Companion for India</title>
+  <meta name="description"
+    content="Accessible, vernacular AI legal companion for everyday Indian citizens strictly grounded on the 2024 Indian Criminal & Consumer Laws (BNS, BNSS, BSA, CPA 2019).">
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
+  <!-- FontAwesome 6 Vector Icons -->
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
   <!-- Google Fonts for Devanagari & Latin -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <!-- Custom Accessible CSS -->
   <link rel="stylesheet" href="/static/style.css">
   <script>window.NYAYA_API_BASE_URL = "%VITE_API_BASE_URL%";</script>
@@ -25,729 +30,1185 @@
             devanagari: ['Mukta', 'sans-serif']
           },
           colors: {
-            saffron: { 50: '#fff7ed', 500: '#f97316', 600: '#ea580c', 700: '#c2410c' },
-            ashoka: { 50: '#eff6ff', 100: '#dbeafe', 500: '#1e40af', 700: '#1e3a8a', 900: '#0f172a' },
-            indgreen: { 50: '#f0fdf4', 500: '#16a34a', 600: '#15803d', 700: '#166534' }
+            saffron: { 50: '#fff7ed', 100: '#ffedd5', 500: '#f97316', 600: '#ea580c', 700: '#c84d08' },
+            earth: { 50: '#fbf9f5', 100: '#f4efe6', 800: '#2a1d17', 900: '#1c130e', 950: '#120c08' },
+            indgreen: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669', 700: '#0b7a55' }
           }
         }
       }
     }
   </script>
 </head>
-<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col font-sans antialiased">
+
+<body class="bg-[#fbf9f5] text-slate-900 min-h-screen flex flex-col font-sans antialiased">
+
+  <!-- Indian Tricolor Top Accent Line -->
+  <div class="tricolor-bar" aria-hidden="true"></div>
+
   <!-- Skip to Main Content Link for WCAG 2.1 AA -->
   <a href="#main-content" class="skip-link">Skip to main content (मुख्य सामग्री पर जाएं)</a>
 
-  <!-- Header -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm" role="banner">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-ashoka-700 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow" aria-hidden="true">
-          ⚖️
-        </div>
-        <div>
-          <div class="flex items-center space-x-2">
-            <span class="text-xl font-extrabold text-ashoka-900 tracking-tight">NyayaMitra</span>
-            <span class="text-xl font-bold text-saffron-600 font-devanagari">न्यायमित्र</span>
-            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300" aria-label="Compliant with 2024 Indian Law (BNS, BNSS)">
-              <i class="fas fa-shield-halved mr-1 text-[10px]" aria-hidden="true"></i> 2024 Laws Active
+  <!-- Global Header Navigation -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 shadow-sm" role="banner">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-1.5 sm:gap-3">
+
+      <!-- Brand Logo & Title -->
+      <a href="#home" class="flex items-center space-x-2 shrink-0 text-decoration-none">
+        <img src="/logo.png" alt="NyayaMitra Logo"
+          class="h-9 sm:h-10 w-auto object-contain hover:scale-105 transition duration-200">
+        <div class="hidden sm:block">
+          <div class="flex items-center space-x-1">
+            <span class="text-base font-extrabold text-earth-900 tracking-tight">NyayaMitra</span>
+            <span
+              class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 hidden md:inline-flex">
+              2024 Active
             </span>
           </div>
-          <p class="text-xs text-slate-500 font-medium hidden sm:block">AI Legal Companion for Everyday Indian Citizens</p>
         </div>
-      </div>
+      </a>
 
-      <!-- Header Controls: Navigation, Language Toggle & Emergency Tele-Law -->
-      <div class="flex items-center space-x-3">
-        <!-- SPA Navigation -->
-        <nav class="hidden md:flex items-center space-x-2" aria-label="Primary">
-          <a href="#home" class="text-sm font-semibold text-slate-700 hover:text-ashoka-900 px-3 py-1 rounded">Home</a>
-          <a href="#kanoon" class="text-sm font-semibold text-slate-700 hover:text-ashoka-900 px-3 py-1 rounded">Kanoon Kya Kehta Hai</a>
-          <a href="#tracker" class="text-sm font-semibold text-slate-700 hover:text-ashoka-900 px-3 py-1 rounded">Nyaya Tracker</a>
-          <a href="#sahayata" class="text-sm font-semibold text-slate-700 hover:text-ashoka-900 px-3 py-1 rounded">Sahayata</a>
-        </nav>
-        <!-- Tele-Law quick badge -->
-        <a href="tel:1516" class="hidden md:inline-flex items-center px-3 py-1.5 rounded-md text-xs font-bold bg-amber-50 text-amber-800 border border-amber-300 hover:bg-amber-100 focus:ring-2 focus:ring-amber-500" aria-label="Free Tele-Law Helpline 1516">
-          <i class="fas fa-phone mr-1.5 text-amber-600" aria-hidden="true"></i> Tele-Law: 1516 (Free)
+      <!-- Desktop Navigation Menu (Optimal Compact Icon + Label Spacing to Prevent Cutoffs) -->
+      <nav class="hidden lg:flex items-center space-x-1 xl:space-x-1.5" aria-label="Primary Navigation">
+
+        <a href="#home" class="nav-link active group px-2 py-1.5" data-page="home" title="Home">
+          <i class="fa-solid fa-house nav-link-icon text-saffron-600"></i>
+          <span class="ml-1 text-xs font-bold">Home</span>
+        </a>
+
+        <a href="#assistant" class="nav-link group px-2 py-1.5" data-page="assistant" title="Legal Assistant">
+          <i class="fa-solid fa-robot nav-link-icon text-slate-500 group-hover:text-saffron-600"></i>
+          <span class="ml-1 text-xs font-bold">Assistant</span>
+        </a>
+
+        <a href="#kanoon" class="nav-link group px-2 py-1.5" data-page="kanoon" title="Kanoon Explainer">
+          <i class="fa-solid fa-book-open nav-link-icon text-slate-500 group-hover:text-saffron-600"></i>
+          <span class="ml-1 text-xs font-bold">Kanoon</span>
+        </a>
+
+        <a href="#bns-matrix" class="nav-link group px-2 py-1.5" data-page="bns-matrix" title="BNS 2024 Matrix">
+          <i class="fa-solid fa-scale-balanced nav-link-icon text-slate-500 group-hover:text-saffron-600"></i>
+          <span class="ml-1 text-xs font-bold">BNS Matrix</span>
+        </a>
+
+        <a href="#tracker" class="nav-link group px-2 py-1.5" data-page="tracker" title="Nyaya Tracker">
+          <i class="fa-solid fa-magnifying-glass-chart nav-link-icon text-slate-500 group-hover:text-saffron-600"></i>
+          <span class="ml-1 text-xs font-bold">Tracker</span>
+        </a>
+
+        <a href="#sahayata" class="nav-link group px-2 py-1.5" data-page="sahayata" title="Sahayata">
+          <i class="fa-solid fa-hand-holding-hand nav-link-icon text-slate-500 group-hover:text-saffron-600"></i>
+          <span class="ml-1 text-xs font-bold">Sahayata</span>
+        </a>
+
+      </nav>
+
+      <!-- Right Action Controls (Fully Visible & Never Truncated) -->
+      <div class="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
+
+        <!-- Emergency Tele-Law Quick Button -->
+        <a href="tel:1516"
+          class="inline-flex items-center px-2.5 py-1.5 rounded-lg text-xs font-extrabold bg-amber-50 text-amber-900 border border-amber-300 hover:bg-amber-100 transition shadow-sm whitespace-nowrap"
+          aria-label="Call Tele-Law Helpline 1516">
+          <i class="fa-solid fa-phone mr-1 text-saffron-600 animate-pulse"></i> 1516 (Tele-Law)
         </a>
 
         <!-- Accessibility Statement Link -->
-        <a href="/accessibility/statement.html" class="inline-flex items-center px-2.5 py-1.5 rounded-md text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-300 focus:ring-2 focus:ring-ashoka-500" aria-label="View Accessibility Statement (WCAG 2.1 AA Compliant)">
-          <i class="fas fa-universal-access mr-1 text-ashoka-700" aria-hidden="true"></i> A11y
+        <a href="/accessibility/statement.html"
+          class="hidden xl:inline-flex items-center px-2 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-300 transition"
+          aria-label="WCAG 2.1 AA Accessibility Statement">
+          <i class="fa-solid fa-universal-access mr-1 text-earth-800"></i> A11y
         </a>
 
         <!-- Bilingual Language Selector -->
-        <div class="inline-flex rounded-lg border border-slate-300 p-0.5 bg-slate-100" role="group" aria-label="Language selection toggle">
-          <button id="lang-btn-en" type="button" class="px-2.5 py-1 text-xs font-bold rounded-md bg-white text-ashoka-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-ashoka-500" aria-pressed="true">
+        <div class="inline-flex rounded-lg border border-slate-300 p-0.5 bg-slate-100 shadow-inner shrink-0"
+          role="group" aria-label="Language selection toggle">
+          <button id="lang-btn-en" type="button"
+            class="px-2 py-0.5 text-xs font-bold rounded bg-white text-earth-900 shadow-sm transition focus:outline-none"
+            aria-pressed="true">
             EN
           </button>
-          <button id="lang-btn-hi" type="button" class="px-2.5 py-1 text-xs font-semibold rounded-md text-slate-600 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-ashoka-500 font-devanagari" aria-pressed="false">
+          <button id="lang-btn-hi" type="button"
+            class="px-2 py-0.5 text-xs font-semibold rounded text-slate-600 hover:text-slate-900 transition focus:outline-none font-devanagari"
+            aria-pressed="false">
             हिन्दी
           </button>
         </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" type="button"
+          class="lg:hidden p-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
+          aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars text-base" aria-hidden="true"></i>
+        </button>
       </div>
+    </div>
+
+    <!-- Statutory Legal Disclaimer Bar -->
+    <div
+      class="bg-amber-50/80 border-t border-b border-amber-200/70 py-1 px-4 text-center text-xs text-amber-900 font-medium">
+      यह कानूनी जानकारी है, कानूनी सलाह नहीं · This is legal information, not legal advice ·
+      <a href="tel:1516" class="font-bold text-saffron-700 hover:underline">Tele-Law 1516</a>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-1 shadow-lg">
+      <a href="#home" class="mobile-nav-link active" data-page="home">
+        <i class="fa-solid fa-house w-6 text-saffron-500"></i> Home
+      </a>
+      <a href="#assistant" class="mobile-nav-link" data-page="assistant">
+        <i class="fa-solid fa-robot w-6 text-earth-800"></i> Legal Assistant (3-Step)
+      </a>
+      <a href="#kanoon" class="mobile-nav-link" data-page="kanoon">
+        <i class="fa-solid fa-book-open w-6 text-indigo-600"></i> Kanoon Kya Kehta Hai
+      </a>
+      <a href="#bns-matrix" class="mobile-nav-link" data-page="bns-matrix">
+        <i class="fa-solid fa-scale-balanced w-6 text-emerald-600"></i> BNS 2024 Law Matrix
+      </a>
+      <a href="#tracker" class="mobile-nav-link" data-page="tracker">
+        <i class="fa-solid fa-magnifying-glass-chart w-6 text-amber-600"></i> Nyaya Tracker (Case Status)
+      </a>
+      <a href="#sahayata" class="mobile-nav-link" data-page="sahayata">
+        <i class="fa-solid fa-hand-holding-hand w-6 text-rose-600"></i> Sahayata (Emergency Aid)
+      </a>
     </div>
   </header>
 
-  <!-- Main Pipeline Container -->
-  <main id="main-content" class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6" role="main">
-    <!-- NEW: Home / Landing Page Section -->
-    <section id="page-home" class="page active">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 items-center">
-        <div>
-          <h2 class="text-3xl font-extrabold text-ashoka-900 mb-3 hero-animate">NyayaMitra — AI Legal Companion for India</h2>
-          <p class="text-slate-700 mb-4">Free, accessible, vernacular legal help grounded in BNS & BNSS 2024. Generate ready-to-file notices, check rights, and reach human aid.</p>
-          <div class="flex gap-3">
-            <a href="#intake" class="px-5 py-3 rounded-lg bg-saffron-500 text-white font-bold shadow hover:bg-saffron-600">Get Started</a>
-            <a href="#kanoon" class="px-5 py-3 rounded-lg border border-ashoka-700 text-ashoka-700 font-bold glass-card">Ask a Law Question</a>
-          </div>
-        </div>
-        <div class="glass-card rounded-xl p-6">
-          <div class="text-sm text-slate-600">Impact</div>
-          <div class="mt-3 grid grid-cols-3 gap-3 text-center">
-            <div class="p-4 bg-white rounded-lg shadow-sm">
-              <div class="text-2xl font-extrabold text-ashoka-900">5.2Cr+</div>
-              <div class="text-xs text-slate-500">Pending Cases</div>
+  <!-- Live Announcer for Screen Readers -->
+  <div id="sr-announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- MAIN APP CONTAINER (Multi-Page View Routing) -->
+  <main id="main-content" class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8" role="main">
+
+    <!-- ======================================================== -->
+    <!-- PAGE 1: LANDING / HOME PAGE (#home)                      -->
+    <!-- ======================================================== -->
+    <section id="page-home" class="page-view active">
+
+      <!-- HERO SECTION WITH WARM EARTH BROWN THEME & ATTACHED IMAGE -->
+      <div class="hero-earth-card rounded-3xl p-6 sm:p-10 text-white shadow-2xl mb-12 relative overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+
+          <!-- Left Text Content Overlay -->
+          <div class="lg:col-span-7 space-y-6">
+            <div
+              class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold bg-saffron-500/20 text-saffron-400 border border-saffron-500/40 shadow-sm backdrop-blur-sm">
+              <i class="fa-solid fa-scale-balanced mr-2 text-saffron-500" aria-hidden="true"></i>
+              <span id="hero-badge-text">Updated for 2026 · Grounded on BNS, BNSS & CPA Acts</span>
             </div>
-            <div class="p-4 bg-white rounded-lg shadow-sm">
-              <div class="text-2xl font-extrabold text-emerald-600">₹0</div>
-              <div class="text-xs text-slate-500">Cost for Basic Advice</div>
-            </div>
-            <div class="p-4 bg-white rounded-lg shadow-sm">
-              <div class="text-2xl font-extrabold text-saffron-600">2024</div>
-              <div class="text-xs text-slate-500">BNS / BNSS Active</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- NEW: Kanoon Kya Kehta Hai (Law Explainer) -->
-    <section id="page-kanoon" class="page">
-      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
-        <h3 class="text-xl font-bold">Kanoon Kya Kehta Hai — Ask a Law Question</h3>
-        <p class="text-sm text-slate-600 mb-3">Type any legal question and get a plain-language answer grounded in 2024 statutes.</p>
-        <div class="flex gap-3">
-          <input id="kanoon-input" class="flex-1 px-3 py-2 border rounded" placeholder="e.g. Can my landlord evict me without notice?">
-          <button id="kanoon-ask" class="px-4 py-2 bg-ashoka-700 text-white rounded">Ask</button>
-        </div>
-        <div id="kanoon-result" class="mt-4 text-sm text-slate-700"></div>
-      </div>
-    </section>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+              <span class="text-white">Know your rights.</span> <br>
+              <span class="text-orange-500">
+                Take your next step.
+              </span>
+            </h1>
 
-    <!-- NEW: Nyaya Tracker -->
-    <section id="page-tracker" class="page">
-      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
-        <h3 class="text-xl font-bold">Nyaya Tracker — Case Status Checker</h3>
-        <p class="text-sm text-slate-600 mb-3">Enter your case number or FIR and get quick links to court portals and next steps.</p>
-        <div class="flex gap-3">
-          <input id="tracker-input" class="flex-1 px-3 py-2 border rounded" placeholder="e.g. Case No: ABC/2024/12345">
-          <button id="tracker-check" class="px-4 py-2 bg-saffron-500 text-white rounded">Check</button>
-        </div>
-        <div id="tracker-result" class="mt-4 text-sm text-slate-700"></div>
-      </div>
-    </section>
-
-    <!-- NEW: Sahayata (Helplines) -->
-    <section id="page-sahayata" class="page">
-      <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-6">
-        <h3 class="text-xl font-bold">Sahayata — Emergency Legal Helplines</h3>
-        <p class="text-sm text-slate-600 mb-3">One-tap calling for urgent legal assistance.</p>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <a href="tel:1516" class="p-4 bg-amber-50 rounded-lg flex items-center justify-between">Tele-Law 1516 <span class="font-bold text-saffron-600">Call</span></a>
-          <a href="tel:15100" class="p-4 bg-emerald-50 rounded-lg flex items-center justify-between">NALSA 15100 <span class="font-bold text-emerald-600">Call</span></a>
-          <a href="tel:1930" class="p-4 bg-rose-50 rounded-lg flex items-center justify-between">Cyber Helpline 1930 <span class="font-bold text-rose-600">Call</span></a>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Hero / Trust Banner -->
-    <section class="bg-gradient-to-r from-ashoka-900 via-indigo-950 to-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-lg mb-8 relative overflow-hidden" aria-labelledby="hero-heading">
-      <div class="relative z-10 max-w-3xl">
-        <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-saffron-500/20 text-saffron-400 border border-saffron-500/30 mb-3">
-          <i class="fas fa-scale-balanced mr-1.5" aria-hidden="true"></i> 100% Free AI Citizen Legal Aid
-        </div>
-        <h1 id="hero-heading" class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3">
-          Know Your Rights. Generate Ready-to-File Documents. Free.
-        </h1>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-4" id="hero-desc">
-          Facing unlawful tenant eviction in Pune? Defrauded by an online UPI scam? No need to pay ₹5,000 for simple guidance. Grounded strictly on <strong>BNS & BNSS 2024</strong> and the <strong>Consumer Protection Act</strong>.
-        </p>
-
-        <!-- Compliance & Metric Pills -->
-        <div class="flex flex-wrap gap-2 pt-1 text-xs font-semibold">
-          <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white/10 text-white border border-white/10">
-            <i class="fas fa-check-circle text-emerald-400 mr-1.5" aria-hidden="true"></i> Zero Repealed IPC (0/50 Verified)
-          </span>
-          <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white/10 text-white border border-white/10">
-            <i class="fas fa-wheelchair text-sky-400 mr-1.5" aria-hidden="true"></i> WCAG 2.1 AA Compliant
-          </span>
-          <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white/10 text-white border border-white/10">
-            <i class="fas fa-bolt text-amber-400 mr-1.5" aria-hidden="true"></i> 8B & 70B Groq Intelligence
-          </span>
-          <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white/10 text-white border border-white/10">
-            <i class="fas fa-book-open-reader text-indigo-300 mr-1.5" aria-hidden="true"></i> Grade 6 Plain Language
-          </span>
-        </div>
-      </div>
-      <div class="absolute right-0 bottom-0 opacity-10 text-9xl transform translate-x-10 translate-y-10 pointer-events-none" aria-hidden="true">
-        ⚖️
-      </div>
-    </section>
-
-    <!-- ARIA Tablist for 3-Step Legal Pipeline -->
-    <div class="border-b border-slate-200 mb-6" role="navigation" aria-label="NyayaMitra 3-Step Legal Pipeline">
-      <ul class="flex flex-wrap -mb-px text-sm font-bold text-center gap-2" role="tablist" aria-orientation="horizontal">
-        <li role="presentation" class="flex-1 sm:flex-initial">
-          <button id="tab-intake" class="pipeline-tab active w-full" role="tab" aria-selected="true" aria-controls="panel-intake" tabindex="0">
-            <span class="tab-step">1</span>
-            <span class="tab-label-en">Samjho Mera Problem (Intake)</span>
-            <span class="tab-label-hi hidden font-devanagari">समझो मेरा प्रॉब्लम (विवरण)</span>
-          </button>
-        </li>
-        <li role="presentation" class="flex-1 sm:flex-initial">
-          <button id="tab-rights" class="pipeline-tab w-full" role="tab" aria-selected="false" aria-controls="panel-rights" tabindex="-1">
-            <span class="tab-step">2</span>
-            <span class="tab-label-en">Mere Adhikaar (Know Rights)</span>
-            <span class="tab-label-hi hidden font-devanagari">मेरे अधिकार (2024 कानून)</span>
-          </button>
-        </li>
-        <li role="presentation" class="flex-1 sm:flex-initial">
-          <button id="tab-document" class="pipeline-tab w-full" role="tab" aria-selected="false" aria-controls="panel-document" tabindex="-1">
-            <span class="tab-step">3</span>
-            <span class="tab-label-en">Mera Document (Generate PDF)</span>
-            <span class="tab-label-hi hidden font-devanagari">मेरा डॉक्यूमेंट (तैयार नोटिस)</span>
-          </button>
-        </li>
-        <li role="presentation" class="flex-1 sm:flex-initial">
-          <button id="tab-compliance" class="pipeline-tab w-full" role="tab" aria-selected="false" aria-controls="panel-compliance" tabindex="-1">
-            <span class="tab-step"><i class="fas fa-check text-xs"></i></span>
-            <span class="tab-label-en">2024 Audit & Benchmarks</span>
-            <span class="tab-label-hi hidden font-devanagari">2024 कानूनी ऑडिट व प्रमाण</span>
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Live Announcer for Screen Readers -->
-    <div id="sr-announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
-
-    <!-- ========================================== -->
-    <!-- TAB PANEL 1: INTAKE (Samjho Mera Problem) -->
-    <!-- ========================================== -->
-    <div id="panel-intake" class="tab-panel active" role="tabpanel" aria-labelledby="tab-intake" tabindex="0">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        <!-- Left 2 Cols: Intake Form & Voice Input -->
-        <div class="lg:col-span-2 space-y-6">
-          <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-            <h2 class="text-xl font-bold text-ashoka-900 mb-2 flex items-center">
-              <i class="fas fa-microphone-lines text-ashoka-700 mr-2" aria-hidden="true"></i>
-              <span id="intake-heading-text">Describe Your Legal Situation in Hindi or English</span>
-            </h2>
-            <p class="text-sm text-slate-600 mb-4" id="intake-subheading">
-              Speak or type what happened. Our 8B AI Classifier identifies your legal rights without complex lawyer jargon.
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed font-normal" id="hero-desc-text">
+              Over 5.2 Crore court cases are pending in India. Don't pay ₹5,000 to an advocate just to understand an
+              eviction threat or digital financial scam. NyayaMitra provides instant, free vernacular legal guidance and
+              ready-to-file legal documents.
             </p>
 
-            <!-- Quick Template Scenarios (One-tap for quick testing) -->
-            <div class="mb-4">
-              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-2" id="preset-label">
-                Quick Test Scenarios (त्वरित उदाहरण):
-              </span>
-              <div class="flex flex-wrap gap-2" role="group" aria-labelledby="preset-label">
-                <button type="button" class="scenario-pill" data-query="My landlord in Pune disconnected my electricity and threatened to throw my luggage out because of a security deposit dispute without 30 days notice.">
-                  🏠 Tenant Eviction & Utilities
-                </button>
-                <button type="button" class="scenario-pill" data-query="I was cheated of ₹45,000 through a fake UPI electricity bill APK scam yesterday. The bank is not helping.">
-                  💳 Cyber & UPI Fraud (Sec 318 BNS)
-                </button>
-                <button type="button" class="scenario-pill" data-query="I bought a refrigerator online for ₹28,000 which arrived broken. The company refuses replacement or refund for 3 weeks.">
-                  📦 Consumer Dispute (CPA 2019)
-                </button>
-                <button type="button" class="scenario-pill" data-query="Police station refused to register my complaint regarding stolen motorbike and did not give zero FIR.">
-                  🚨 Police Refusal & Zero FIR
-                </button>
-              </div>
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap gap-4 pt-2">
+              <a href="#assistant"
+                class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-saffron-500 to-saffron-600 hover:from-saffron-600 hover:to-saffron-700 text-white font-bold text-sm shadow-lg shadow-saffron-500/30 transition transform hover:-translate-y-0.5 inline-flex items-center">
+                <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Start with your problem
+              </a>
+              <a href="#kanoon"
+                class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-sm backdrop-blur-md transition inline-flex items-center">
+                <i class="fa-solid fa-book-open mr-2 text-sky-400"></i> Ask Law Question
+              </a>
+              <a href="#sahayata"
+                class="px-6 py-3.5 rounded-xl bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 border border-emerald-500/30 font-bold text-sm transition inline-flex items-center">
+                <i class="fa-solid fa-phone mr-2 text-emerald-400"></i> Emergency Helpline
+              </a>
             </div>
 
-            <form id="intake-form" class="space-y-4" onsubmit="event.preventDefault(); window.NyayaMitraApp.handleIntakeSubmit();">
-              <div>
-                <div class="flex items-center justify-between mb-1.5">
-                  <label for="intake-query" class="text-sm font-bold text-slate-800">
-                    <span id="intake-input-label">Your Legal Concern / आपकी समस्या:</span>
-                    <span class="text-rose-500" aria-hidden="true">*</span>
-                  </label>
-                  
-                  <!-- Voice Input Button (Web Speech API) -->
-                  <button id="voice-input-btn" type="button" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition shadow-sm" aria-label="Start Voice Recording in your language">
-                    <i class="fas fa-microphone mr-1.5" aria-hidden="true"></i>
-                    <span id="voice-btn-label">Voice Speak (बोलें)</span>
-                  </button>
-                </div>
+            <!-- Compliance Checklist Pills -->
+            <div class="pt-4 flex flex-wrap gap-2 text-xs font-semibold">
+              <span
+                class="inline-flex items-center px-3 py-1 rounded-lg bg-white/10 text-emerald-300 border border-white/10">
+                <i class="fa-solid fa-circle-check mr-1.5 text-emerald-400"></i> Grounded in BNS · BNSS · BSA
+              </span>
+              <span
+                class="inline-flex items-center px-3 py-1 rounded-lg bg-white/10 text-amber-300 border border-white/10">
+                <i class="fa-solid fa-graduation-cap mr-1.5 text-amber-400"></i> Grade 6 Plain Language
+              </span>
+              <span
+                class="inline-flex items-center px-3 py-1 rounded-lg bg-white/10 text-sky-300 border border-white/10">
+                <i class="fa-solid fa-universal-access mr-1.5 text-sky-400"></i> WCAG 2.1 AA Compliant
+              </span>
+            </div>
+          </div>
 
-                <div class="relative">
-                  <textarea id="intake-query" name="query" rows="4" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-ashoka-500 focus:border-ashoka-500 text-slate-900 text-sm placeholder-slate-400" placeholder="e.g. My landlord is threatening to evict me tomorrow without 30 days notice and won't return my deposit..."></textarea>
-                  <div id="voice-status-indicator" class="hidden absolute top-2 right-2 flex items-center space-x-1.5 bg-rose-500 text-white px-2 py-0.5 rounded text-xs font-semibold animate-pulse" role="status">
-                    <span class="w-2 h-2 rounded-full bg-white"></span>
-                    <span>Listening...</span>
+          <!-- Right Image Container (User's Attached Media Image) -->
+          <div class="lg:col-span-5">
+            <div
+              class="hero-image-container relative rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl group">
+              <img src="/lawyer-desk.jpg" alt="Lawyer Desk with Laptop and Law Book"
+                class="w-full h-80 lg:h-96 object-cover transform group-hover:scale-105 transition duration-500">
+
+              <!-- Subtle Image Overlay Gradient -->
+              <div class="absolute inset-0 bg-gradient-to-t from-earth-950 via-transparent to-transparent opacity-80">
+              </div>
+
+              <!-- Floating Glass Card Overlay -->
+              <div class="hero-overlay-badge">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-xs font-bold text-saffron-400 uppercase tracking-wider">Statutory Protection</span>
+                  <span
+                    class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/30 text-emerald-300 border border-emerald-400/30">Verified</span>
+                </div>
+                <p class="text-xs text-slate-200 font-medium leading-relaxed">
+                  "Equal access to legal aid is a Constitutional Mandate under Article 39A of the Constitution of
+                  India."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMPACT STATS SECTION -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div class="glass-panel p-5 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <div class="text-3xl font-extrabold text-earth-900 mb-1">5.2 Cr+</div>
+          <div class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Pending Court Cases</div>
+          <div class="text-[11px] text-slate-400 mt-1">High Courts & Subordinate Courts</div>
+        </div>
+
+        <div class="glass-panel p-5 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <div class="text-3xl font-extrabold text-emerald-600 mb-1">₹0</div>
+          <div class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Consultation Fee</div>
+          <div class="text-[11px] text-slate-400 mt-1">Free Citizen Legal Companion</div>
+        </div>
+
+        <div class="glass-panel p-5 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <div class="text-3xl font-extrabold text-saffron-600 mb-1">2024</div>
+          <div class="text-xs font-semibold text-slate-600 uppercase tracking-wider">BNS / BNSS Grounding</div>
+          <div class="text-[11px] text-slate-400 mt-1">Strictly New Criminal Enactments</div>
+        </div>
+
+        <div class="glass-panel p-5 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <div class="text-3xl font-extrabold text-indigo-600 mb-1">1516</div>
+          <div class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Tele-Law Integration</div>
+          <div class="text-[11px] text-slate-400 mt-1">Free Ministry Advocate Helpline</div>
+        </div>
+      </div>
+
+      <!-- WHY NYAYAMITRA VS CHATGPT (IMPACT COMPARISON TABLE) -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm mb-12">
+        <div class="max-w-3xl mb-6">
+          <h2 class="text-2xl font-extrabold text-earth-900 mb-2">Why NyayaMitra vs Generic AI?</h2>
+          <p class="text-sm text-slate-600">
+            Generic AI models generate long, confusing essays citing repealed 1860 laws. NyayaMitra is tailor-built for
+            India's legal crisis.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 text-xs uppercase font-bold text-slate-500 bg-slate-50">
+                <th class="p-3.5 rounded-l-lg">Core Legal Capability</th>
+                <th class="p-3.5 text-rose-600">Generic AI (ChatGPT / Gemini)</th>
+                <th class="p-3.5 text-emerald-700 bg-emerald-50 rounded-r-lg">NyayaMitra (न्यायमित्र)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr>
+                <td class="p-3.5 font-bold text-slate-800">2024 Law Grounding (BNS vs IPC)</td>
+                <td class="p-3.5 text-slate-500">
+                  <i class="fa-solid fa-circle-xmark text-rose-500 mr-1.5"></i> Cites repealed IPC 1860 & CrPC 1973
+                </td>
+                <td class="p-3.5 font-semibold text-emerald-700 bg-emerald-50/50">
+                  <i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> 100% Grounded in BNS, BNSS & BSA 2024
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-bold text-slate-800">Intake Workflow</td>
+                <td class="p-3.5 text-slate-500">
+                  <i class="fa-solid fa-circle-xmark text-rose-500 mr-1.5"></i> Open-ended chat with endless typing
+                </td>
+                <td class="p-3.5 font-semibold text-emerald-700 bg-emerald-50/50">
+                  <i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> 3-Step Guided Intake & Clarifying
+                  Questions
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-bold text-slate-800">Legal Plain Language</td>
+                <td class="p-3.5 text-slate-500">
+                  <i class="fa-solid fa-circle-xmark text-rose-500 mr-1.5"></i> Complex legal jargon & multi-page essays
+                </td>
+                <td class="p-3.5 font-semibold text-emerald-700 bg-emerald-50/50">
+                  <i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> Grade 6 Reading Level & Bilingual
+                  Hindi/English
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-bold text-slate-800">Document Generation</td>
+                <td class="p-3.5 text-slate-500">
+                  <i class="fa-solid fa-circle-xmark text-rose-500 mr-1.5"></i> Plain unformatted text blocks
+                </td>
+                <td class="p-3.5 font-semibold text-emerald-700 bg-emerald-50/50">
+                  <i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> Ready-to-file Legal Notice PDF +
+                  Speed Post Steps
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-bold text-slate-800">Human Legal Escalation</td>
+                <td class="p-3.5 text-slate-500">
+                  <i class="fa-solid fa-circle-xmark text-rose-500 mr-1.5"></i> No connection to human legal aid
+                </td>
+                <td class="p-3.5 font-semibold text-emerald-700 bg-emerald-50/50">
+                  <i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> Direct 1-Tap Tele-Law 1516 & DLSA
+                  Routing
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FEATURE SHOWCASE GRID -->
+      <div class="mb-12">
+        <div class="text-center max-w-2xl mx-auto mb-8">
+          <h2 class="text-2xl font-extrabold text-earth-900 mb-2">Explore Legal Tools & Features</h2>
+          <p class="text-slate-600 text-sm">Select any module below to get immediate legal access and assistance.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Feature Card 1: 3-Step Assistant -->
+          <a href="#assistant"
+            class="glass-panel p-6 rounded-2xl border border-slate-200 hover:border-saffron-600 hover:shadow-xl transition group">
+            <div
+              class="w-12 h-12 rounded-xl bg-saffron-100 text-saffron-600 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h3 class="text-lg font-bold text-earth-900 mb-2 flex items-center justify-between">
+              Guided 3-Step Assistant <i
+                class="fa-solid fa-arrow-right text-xs text-slate-400 group-hover:text-saffron-600 transition transform group-hover:translate-x-1"></i>
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Describe your legal issue in Hindi/English. Get AI domain classification, Grade-6 rights summary, and
+              ready-to-file legal notice.
+            </p>
+            <span class="inline-flex items-center text-xs font-bold text-saffron-600">
+              Start Intake <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+            </span>
+          </a>
+
+          <!-- Feature Card 2: Kanoon Explainer -->
+          <a href="#kanoon"
+            class="glass-panel p-6 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:shadow-xl transition group">
+            <div
+              class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+            <h3 class="text-lg font-bold text-earth-900 mb-2 flex items-center justify-between">
+              Kanoon Kya Kehta Hai <i
+                class="fa-solid fa-arrow-right text-xs text-slate-400 group-hover:text-indigo-600 transition transform group-hover:translate-x-1"></i>
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Ask any law question in plain language and get simple answers grounded in 2024 Indian statutes.
+            </p>
+            <span class="inline-flex items-center text-xs font-bold text-indigo-600">
+              Ask Question <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+            </span>
+          </a>
+
+          <!-- Feature Card 3: BNS 2024 Converter -->
+          <a href="#bns-matrix"
+            class="glass-panel p-6 rounded-2xl border border-slate-200 hover:border-emerald-600 hover:shadow-xl transition group">
+            <div
+              class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition">
+              <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+            <h3 class="text-lg font-bold text-earth-900 mb-2 flex items-center justify-between">
+              BNS 2024 Law Matrix <i
+                class="fa-solid fa-arrow-right text-xs text-slate-400 group-hover:text-emerald-600 transition transform group-hover:translate-x-1"></i>
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Convert old IPC & CrPC sections into new Bharatiya Nyaya Sanhita (BNS 2023) enactments.
+            </p>
+            <span class="inline-flex items-center text-xs font-bold text-emerald-600">
+              Convert IPC <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+            </span>
+          </a>
+
+          <!-- Feature Card 4: Nyaya Tracker -->
+          <a href="#tracker"
+            class="glass-panel p-6 rounded-2xl border border-slate-200 hover:border-amber-600 hover:shadow-xl transition group">
+            <div
+              class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition">
+              <i class="fa-solid fa-magnifying-glass-chart"></i>
+            </div>
+            <h3 class="text-lg font-bold text-earth-900 mb-2 flex items-center justify-between">
+              Nyaya Tracker <i
+                class="fa-solid fa-arrow-right text-xs text-slate-400 group-hover:text-amber-600 transition transform group-hover:translate-x-1"></i>
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Check court case progress, hearing dates, and FIR status with official eCourts links.
+            </p>
+            <span class="inline-flex items-center text-xs font-bold text-amber-600">
+              Track Case <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+            </span>
+          </a>
+
+          <!-- Feature Card 5: Sahayata Emergency Helplines -->
+          <a href="#sahayata"
+            class="glass-panel p-6 rounded-2xl border border-slate-200 hover:border-rose-600 hover:shadow-xl transition group">
+            <div
+              class="w-12 h-12 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition">
+              <i class="fa-solid fa-hand-holding-hand"></i>
+            </div>
+            <h3 class="text-lg font-bold text-earth-900 mb-2 flex items-center justify-between">
+              Sahayata Helplines <i
+                class="fa-solid fa-arrow-right text-xs text-slate-400 group-hover:text-rose-600 transition transform group-hover:translate-x-1"></i>
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Direct 1-tap dial for Tele-Law 1516, Cyber Helpline 1930, Women Helpline 1091, and DLSA Free Advocates.
+            </p>
+            <span class="inline-flex items-center text-xs font-bold text-rose-600">
+              Get Support <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+            </span>
+          </a>
+
+          <!-- Feature Card 6: Zero FIR Assistance -->
+          <a href="#assistant"
+            class="glass-panel p-6 rounded-2xl border border-slate-200 hover:border-purple-600 hover:shadow-xl transition group">
+            <div
+              class="w-12 h-12 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition">
+              <i class="fa-solid fa-file-contract"></i>
+            </div>
+            <h3 class="text-lg font-bold text-earth-900 mb-2 flex items-center justify-between">
+              Zero FIR & Police Help <i
+                class="fa-solid fa-arrow-right text-xs text-slate-400 group-hover:text-purple-600 transition transform group-hover:translate-x-1"></i>
+            </h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              Know your rights under BNSS Section 173(1) when police refuse to register your complaint.
+            </p>
+            <span class="inline-flex items-center text-xs font-bold text-purple-600">
+              Check Eligibility <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+            </span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- PAGE 2: GUIDED 3-STEP LEGAL ASSISTANT (#assistant)       -->
+    <!-- ======================================================== -->
+    <section id="page-assistant" class="page-view">
+      <div class="mb-6">
+        <h2 class="text-2xl font-extrabold text-earth-900">Guided AI Legal Assistant</h2>
+        <p class="text-sm text-slate-600">3-Step intake pipeline to analyze rights and generate ready-to-file documents.
+        </p>
+      </div>
+
+      <!-- ARIA Pipeline Tablist -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm mb-6 overflow-hidden">
+        <ul class="flex border-b border-slate-200 text-sm font-bold overflow-x-auto" role="tablist">
+          <li role="presentation" class="flex-1 min-w-[200px]">
+            <button id="tab-intake" class="pipeline-tab active w-full" role="tab" aria-selected="true"
+              aria-controls="panel-intake" tabindex="0">
+              <span class="tab-step">1</span>
+              <span class="tab-label-en">Samjho Mera Problem</span>
+              <span class="tab-label-hi hidden font-devanagari">समझो मेरा प्रॉब्लम</span>
+            </button>
+          </li>
+          <li role="presentation" class="flex-1 min-w-[200px]">
+            <button id="tab-rights" class="pipeline-tab w-full" role="tab" aria-selected="false"
+              aria-controls="panel-rights" tabindex="-1">
+              <span class="tab-step">2</span>
+              <span class="tab-label-en">Mere Adhikaar</span>
+              <span class="tab-label-hi hidden font-devanagari">मेरे अधिकार (2024)</span>
+            </button>
+          </li>
+          <li role="presentation" class="flex-1 min-w-[200px]">
+            <button id="tab-document" class="pipeline-tab w-full" role="tab" aria-selected="false"
+              aria-controls="panel-document" tabindex="-1">
+              <span class="tab-step">3</span>
+              <span class="tab-label-en">Mera Document</span>
+              <span class="tab-label-hi hidden font-devanagari">मेरा डॉक्यूमेंट (PDF)</span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- TAB PANEL 1: INTAKE -->
+        <div id="panel-intake" class="p-6" role="tabpanel">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+              <div>
+                <h3 class="text-lg font-bold text-earth-900 mb-1 flex items-center">
+                  <i class="fa-solid fa-microphone-lines text-saffron-600 mr-2"></i>
+                  <span>Describe Your Problem (Hindi or English)</span>
+                </h3>
+                <p class="text-xs text-slate-500 mb-4">
+                  Speak, type, or upload supporting document/image evidence. Our AI classifier identifies your legal
+                  domain without complex lawyer jargon.
+                </p>
+
+                <!-- Scenario Chips -->
+                <div class="mb-4">
+                  <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Quick Test
+                    Scenarios:</span>
+                  <div class="flex flex-wrap gap-2">
+                    <button type="button" class="scenario-pill"
+                      data-query="My landlord in Pune disconnected my electricity and threatened to throw my luggage out without 30 days statutory notice.">
+                      <i class="fa-solid fa-house text-saffron-500 mr-1"></i> Tenant Eviction & Utilities
+                    </button>
+                    <button type="button" class="scenario-pill"
+                      data-query="I was cheated of ₹45,000 through a fake UPI electricity bill APK scam yesterday. The bank is not helping.">
+                      <i class="fa-solid fa-credit-card text-emerald-600 mr-1"></i> Cyber & UPI Fraud (Sec 318 BNS)
+                    </button>
+                    <button type="button" class="scenario-pill"
+                      data-query="I bought a refrigerator online for ₹28,000 which arrived broken. Seller refuses replacement for 3 weeks.">
+                      <i class="fa-solid fa-box text-indigo-600 mr-1"></i> Consumer Dispute (CPA 2019)
+                    </button>
+                    <button type="button" class="scenario-pill"
+                      data-query="Police station refused to register my complaint regarding stolen motorbike and did not give zero FIR.">
+                      <i class="fa-solid fa-triangle-exclamation text-rose-600 mr-1"></i> Police Refusal & Zero FIR
+                    </button>
                   </div>
                 </div>
+
+                <!-- Document & Image Evidence Upload Drag-and-Drop Zone -->
+                <div class="mb-4">
+                  <div id="drop-zone"
+                    class="border-2 border-dashed border-slate-300 rounded-xl p-4 text-center cursor-pointer hover:border-saffron-600 hover:bg-saffron-50/50 transition bg-white">
+                    <input type="file" id="evidence-upload" accept="image/*,.pdf,.doc,.docx,.txt" class="hidden">
+                    <div class="flex items-center justify-center space-x-2 text-slate-600 mb-1">
+                      <i class="fa-solid fa-cloud-arrow-up text-lg text-saffron-600"></i>
+                      <span class="text-xs font-bold">Upload Supporting Evidence (Notice, Rent Agreement, Payment
+                        Screenshot)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">Click to browse or drag & drop files (Images, PDFs, Text).
+                      Content will be extracted automatically.</p>
+                  </div>
+                  <div id="uploaded-files-chips" class="flex flex-wrap gap-2 mt-2"></div>
+                </div>
+
+                <form id="intake-form" onsubmit="event.preventDefault(); window.NyayaMitraApp.handleIntakeSubmit();">
+                  <div class="mb-3">
+                    <div class="flex items-center justify-between mb-1.5">
+                      <label for="intake-query" class="text-xs font-bold text-slate-800">Your Legal Situation / आपकी
+                        समस्या:</label>
+                      <button id="voice-input-btn" type="button"
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition">
+                        <i class="fa-solid fa-microphone mr-1.5"></i> <span>Voice Speak (बोलें)</span>
+                      </button>
+                    </div>
+                    <textarea id="intake-query" name="query" rows="4" required
+                      class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-saffron-600 text-sm placeholder-slate-400"
+                      placeholder="e.g. My landlord is threatening to evict me tomorrow without 30 days notice..."></textarea>
+                  </div>
+
+                  <button type="submit"
+                    class="w-full py-3.5 rounded-xl bg-saffron-600 hover:bg-saffron-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center">
+                    <span>Analyze Problem & Generate Clarifying Questions</span>
+                    <i class="fa-solid fa-arrow-right ml-2"></i>
+                  </button>
+                </form>
               </div>
 
-              <div class="flex items-center justify-between pt-2">
-                <span class="text-xs text-slate-500 flex items-center">
-                  <i class="fas fa-lock mr-1.5 text-slate-400" aria-hidden="true"></i>
-                  Zero data retained. 100% Client-side privacy.
-                </span>
-                <button id="intake-submit-btn" type="submit" class="inline-flex items-center px-5 py-2.5 rounded-lg text-sm font-bold text-white bg-ashoka-700 hover:bg-ashoka-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ashoka-500 shadow-md transition">
-                  <span id="intake-btn-text">Analyze My Rights (अधिकार जानें)</span>
-                  <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+              <!-- Clarifying Questions Card (Rendered dynamically) -->
+              <div id="clarifying-questions-card" class="hidden bg-slate-50 border border-slate-200 rounded-xl p-6">
+                <h4 class="text-sm font-bold text-earth-900 mb-2 uppercase tracking-wider flex items-center">
+                  <i class="fa-solid fa-clipboard-question text-saffron-600 mr-2"></i> 3 Clarifying Questions:
+                </h4>
+                <div id="clarifying-questions-list" class="space-y-4 mb-4"></div>
+                <button type="button" onclick="window.NyayaMitraApp.proceedToRights()"
+                  class="px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow transition">
+                  Proceed to Know My Rights <i class="fa-solid fa-arrow-right ml-1"></i>
                 </button>
               </div>
-            </form>
-          </div>
-
-          <!-- Clarifying 3 Questions Container (Dynamic) -->
-          <div id="clarifying-questions-card" class="hidden bg-white rounded-xl border border-indigo-200 p-6 shadow-sm">
-            <div class="flex items-center justify-between mb-4 pb-3 border-b border-indigo-100">
-              <div class="flex items-center space-x-2">
-                <span class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">3</span>
-                <h3 class="text-base font-bold text-indigo-950">Clarifying Questions (स्पष्टीकरण सवाल)</h3>
-              </div>
-              <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded border border-indigo-200">
-                Grade 6 Clarity
-              </span>
             </div>
 
-            <!-- Identified Summary Badge -->
-            <div id="intake-summary-box" class="bg-indigo-50 border-l-4 border-indigo-500 p-3 rounded mb-4 text-xs sm:text-sm text-indigo-900 leading-relaxed">
-            </div>
-
-            <!-- Form with 3 strict questions -->
-            <form id="clarifying-form" class="space-y-4" onsubmit="event.preventDefault(); window.NyayaMitraApp.handleClarifyingSubmit();">
-              <div id="clarifying-questions-list" class="space-y-4">
-                <!-- Injected via app.js -->
-              </div>
-
-              <div class="pt-3 flex justify-end">
-                <button id="proceed-to-rights-btn" type="submit" class="inline-flex items-center px-5 py-2.5 rounded-lg text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 shadow-md">
-                  <span>View My 2024 Legal Rights</span>
-                  <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Right 1 Col: Tele-Law 1516 & Statutory Info -->
-        <div class="space-y-6">
-          <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-amber-200 p-5 shadow-sm">
-            <div class="flex items-start space-x-3">
-              <div class="w-10 h-10 rounded-full bg-amber-200 text-amber-800 flex items-center justify-center text-lg flex-shrink-0" aria-hidden="true">
-                📞
-              </div>
-              <div>
-                <h3 class="text-sm font-bold text-amber-950">Free Human Legal Aid Helpline</h3>
-                <p class="text-xs text-amber-900 mt-1 leading-relaxed">
-                  Citizens eligible for free legal counsel under Section 12 of the Legal Services Authorities Act can directly speak with a panel advocate:
-                </p>
-                <div class="mt-3 space-y-2">
-                  <a href="tel:1516" class="flex items-center justify-between p-2 rounded bg-white border border-amber-300 text-amber-900 text-xs font-bold hover:bg-amber-100">
-                    <span>Tele-Law (Dept. of Justice)</span>
-                    <span class="text-saffron-600 font-extrabold text-sm">Call 1516</span>
-                  </a>
-                  <a href="tel:15100" class="flex items-center justify-between p-2 rounded bg-white border border-amber-300 text-amber-900 text-xs font-bold hover:bg-amber-100">
-                    <span>NALSA Legal Aid</span>
-                    <span class="text-saffron-600 font-extrabold text-sm">Call 15100</span>
-                  </a>
-                  <a href="tel:1930" class="flex items-center justify-between p-2 rounded bg-white border border-amber-300 text-amber-900 text-xs font-bold hover:bg-amber-100">
-                    <span>National Cyber Crime Helpline</span>
-                    <span class="text-saffron-600 font-extrabold text-sm">Call 1930</span>
-                  </a>
+            <!-- Right Sidebar: AI Summary -->
+            <div class="lg:col-span-1">
+              <div class="bg-earth-900 text-white rounded-2xl p-6 shadow-md border border-earth-800">
+                <h4 class="text-sm font-bold uppercase tracking-wider text-saffron-400 mb-3 flex items-center">
+                  <i class="fa-solid fa-brain mr-2"></i> AI Legal Domain Status
+                </h4>
+                <div id="intake-summary-box" class="space-y-3 text-xs text-slate-300">
+                  <p class="italic">Enter your legal situation on the left to begin instant AI domain classification.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- BNS 2024 Key Changes Card -->
-          <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-            <h3 class="text-sm font-bold text-ashoka-900 mb-3 flex items-center">
-              <i class="fas fa-book-bookmark text-ashoka-700 mr-2" aria-hidden="true"></i>
-              July 1, 2024 Legal Transition
-            </h3>
-            <ul class="text-xs text-slate-600 space-y-2">
-              <li class="flex items-start">
-                <span class="text-emerald-600 font-bold mr-1.5">✓</span>
-                <span><strong>BNS replaces IPC:</strong> Cheating is now Sec 318; Theft is Sec 303; Threats are Sec 351.</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-emerald-600 font-bold mr-1.5">✓</span>
-                <span><strong>BNSS replaces CrPC:</strong> Mandatory Zero FIR (Sec 173) and 90-day investigation updates to victims.</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-emerald-600 font-bold mr-1.5">✓</span>
-                <span><strong>BSA replaces Evidence Act:</strong> Electronic records/WhatsApp messages now primary admissible evidence.</span>
-              </li>
-            </ul>
-          </div>
         </div>
 
-      </div>
-    </div>
-
-    <!-- ========================================== -->
-    <!-- TAB PANEL 2: RIGHTS (Mere Adhikaar) -->
-    <!-- ========================================== -->
-    <div id="panel-rights" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-rights" tabindex="0">
-      <div class="space-y-6">
-        
-        <!-- Header status banner -->
-        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <div class="flex items-center space-x-2">
-              <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800" id="rights-domain-pill">
-                Detected Domain: Tenant & Housing Dispute
-              </span>
-              <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                <i class="fas fa-check mr-1" aria-hidden="true"></i> 2024 Statutes Grounded
-              </span>
-            </div>
-            <h2 class="text-2xl font-extrabold text-ashoka-900 mt-2">
-              Your Legal Protections & Deadlines (आपके कानूनी अधिकार)
-            </h2>
-            <p class="text-sm text-slate-600 mt-1">
-              Explained at a Grade 6 reading level. Strictly references BNS 2023, BNSS 2023, and Consumer Protection Act 2019.
-            </p>
-          </div>
-
-          <!-- Deadline Box -->
-          <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-4 flex items-center space-x-3 flex-shrink-0">
-            <div class="w-12 h-12 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-extrabold text-lg" aria-hidden="true">
-              ⏳
-            </div>
-            <div>
-              <span class="text-xs uppercase font-bold text-indigo-600 tracking-wider">Statutory Notice Window</span>
-              <p class="text-lg font-extrabold text-indigo-950" id="rights-timeline-text">15 to 30 Days Notice</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Rights Cards List -->
-        <div id="rights-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Dynamic cards injected via app.js -->
-        </div>
-
-        <!-- Next Action: Proceed to Document Draft -->
-        <div class="bg-gradient-to-r from-slate-900 to-ashoka-900 rounded-xl p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
-          <div>
-            <h3 class="text-lg font-bold">Ready to take formal action?</h3>
-            <p class="text-sm text-slate-300">Generate a free, printable legal notice or complaint compliant with the 2024 statutes.</p>
-          </div>
-          <button type="button" onclick="window.NyayaMitraApp.switchTab('document')" class="px-6 py-3 rounded-lg text-sm font-bold bg-saffron-500 hover:bg-saffron-600 text-white shadow-lg transition flex items-center flex-shrink-0">
-            <span>Draft Ready-to-File Notice</span>
-            <i class="fas fa-file-signature ml-2" aria-hidden="true"></i>
-          </button>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ========================================== -->
-    <!-- TAB PANEL 3: DOCUMENT (Mera Document) -->
-    <!-- ========================================== -->
-    <div id="panel-document" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-document" tabindex="0">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        <!-- Left 2 Cols: Document Generation Form -->
-        <div class="lg:col-span-2 space-y-6">
-          <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-            <h2 class="text-xl font-bold text-ashoka-900 mb-2">
-              Generate Free Ready-to-File Legal Document
-            </h2>
-            <p class="text-sm text-slate-600 mb-6">
-              Generates a formal Indian legal notice or complaint formatted with 2024 statutory citations (BNS/BNSS/CPA). Download as PDF instantly.
-            </p>
-
-            <form id="document-form" class="space-y-4" onsubmit="event.preventDefault(); window.NyayaMitraApp.handleGenerateDocSubmit();">
-              
-              <!-- Document Type Selection -->
+        <!-- TAB PANEL 2: RIGHTS -->
+        <div id="panel-rights" class="hidden p-6" role="tabpanel">
+          <div id="rights-content-area">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-200">
               <div>
-                <label for="doc-type-select" class="block text-sm font-bold text-slate-800 mb-1">
-                  Document Type / कानूनी दस्तावेज का प्रकार: <span class="text-rose-500">*</span>
-                </label>
-                <select id="doc-type-select" name="doc_type" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-ashoka-500 focus:border-ashoka-500 text-sm font-semibold">
-                  <option value="legal_notice_tenant">Tenant Protection Notice (Against Illegal Eviction / Deposit Withholding)</option>
-                  <option value="cyber_fraud_complaint">Zero-FIR / Police Complaint for Cyber & Financial Fraud (Sec 173 BNSS)</option>
-                  <option value="consumer_complaint">Consumer Dispute Notice (CPA 2019 Deficiency in Service / Defective Goods)</option>
-                  <option value="rti_application">RTI Application Under Section 6(1) Right to Information Act</option>
+                <span id="rights-domain-pill"
+                  class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-saffron-100 text-saffron-800 mb-1">Domain
+                  Loading...</span>
+                <h3 class="text-xl font-bold text-earth-900">Mere Adhikaar — Statutory Protections</h3>
+              </div>
+              <div class="text-right">
+                <div class="text-xs text-slate-500 font-medium">Statutory Action Timeline</div>
+                <div id="rights-timeline-text" class="text-sm font-extrabold text-saffron-600">15 Days Notice Period
+                </div>
+              </div>
+            </div>
+
+            <div id="rights-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6"></div>
+
+            <div class="flex justify-between items-center pt-4 border-t border-slate-200">
+              <button type="button" onclick="window.NyayaMitraApp.switchTab('intake')"
+                class="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 font-bold text-sm">
+                <i class="fa-solid fa-arrow-left mr-1"></i> Back to Intake
+              </button>
+              <button type="button" onclick="window.NyayaMitraApp.switchTab('document')"
+                class="px-5 py-2.5 rounded-lg bg-saffron-600 hover:bg-saffron-700 text-white font-bold text-sm shadow">
+                Generate Ready-to-File Document <i class="fa-solid fa-arrow-right ml-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB PANEL 3: DOCUMENT GENERATION -->
+        <div id="panel-document" class="hidden p-6" role="tabpanel">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Form Inputs -->
+            <div class="lg:col-span-5 space-y-4">
+              <h3 class="text-lg font-bold text-earth-900 mb-2">Generate Legal Notice / Complaint</h3>
+
+              <div>
+                <label for="doc-type-select" class="block text-xs font-bold text-slate-700 mb-1">Document Type:</label>
+                <select id="doc-type-select" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm">
+                  <option value="legal_notice_tenant">Statutory Legal Notice (Tenant Eviction / Utilities)</option>
+                  <option value="cyber_fraud_complaint">Cyber Crime & Banking Refund Complaint (Sec 318 BNS)</option>
+                  <option value="consumer_complaint">Consumer Protection Notice (CPA 2019)</option>
+                  <option value="rti_application">RTI Application (RTI Act 2005)</option>
                 </select>
               </div>
 
-              <!-- Two Column Names and Addresses -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <!-- Applicant -->
-                <div class="space-y-3 bg-slate-50 p-4 rounded-lg border border-slate-200">
-                  <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Complainant / Notice Sender</h3>
-                  <div>
-                    <label for="applicant-name" class="block text-xs font-semibold text-slate-700 mb-1">Your Full Name: <span class="text-rose-500">*</span></label>
-                    <input type="text" id="applicant-name" name="applicant_name" required value="Ramesh Kumar" class="w-full px-3 py-2 rounded border border-slate-300 text-sm" placeholder="e.g. Ramesh Kumar">
-                  </div>
-                  <div>
-                    <label for="applicant-contact" class="block text-xs font-semibold text-slate-700 mb-1">Your Phone / Email: <span class="text-rose-500">*</span></label>
-                    <input type="text" id="applicant-contact" name="applicant_contact" required value="+91 9876543210" class="w-full px-3 py-2 rounded border border-slate-300 text-sm" placeholder="e.g. +91 9876543210">
-                  </div>
-                  <div>
-                    <label for="applicant-address" class="block text-xs font-semibold text-slate-700 mb-1">Your Address: <span class="text-rose-500">*</span></label>
-                    <input type="text" id="applicant-address" name="applicant_address" required value="Flat 302, Green Valley Apartments, Pune, Maharashtra 411001" class="w-full px-3 py-2 rounded border border-slate-300 text-sm" placeholder="Full postal address">
-                  </div>
-                </div>
-
-                <!-- Opposite Party -->
-                <div class="space-y-3 bg-slate-50 p-4 rounded-lg border border-slate-200">
-                  <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Opposite Party / Noticee</h3>
-                  <div>
-                    <label for="opposite-party-name" class="block text-xs font-semibold text-slate-700 mb-1">Opposite Party Name: <span class="text-rose-500">*</span></label>
-                    <input type="text" id="opposite-party-name" name="opposite_party_name" required value="Suresh Sharma (Landlord)" class="w-full px-3 py-2 rounded border border-slate-300 text-sm" placeholder="e.g. Suresh Sharma">
-                  </div>
-                  <div>
-                    <label for="incident-date" class="block text-xs font-semibold text-slate-700 mb-1">Date of Incident / Cause of Action: <span class="text-rose-500">*</span></label>
-                    <input type="date" id="incident-date" name="incident_date" required value="2026-09-15" class="w-full px-3 py-2 rounded border border-slate-300 text-sm">
-                  </div>
-                  <div>
-                    <label for="opposite-party-address" class="block text-xs font-semibold text-slate-700 mb-1">Opposite Party Address: <span class="text-rose-500">*</span></label>
-                    <input type="text" id="opposite-party-address" name="opposite_party_address" required value="Bungalow 12, Model Colony, Pune, Maharashtra 411016" class="w-full px-3 py-2 rounded border border-slate-300 text-sm" placeholder="Full address of opposite party">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Disputed Amount -->
               <div>
-                <label for="disputed-amount" class="block text-xs font-semibold text-slate-700 mb-1">
-                  Disputed Amount / Valuation (INR ₹):
-                </label>
-                <input type="text" id="disputed-amount" name="disputed_amount" value="60,000" class="w-full px-3 py-2 rounded border border-slate-300 text-sm" placeholder="e.g. 60,000">
+                <label for="applicant-name" class="block text-xs font-bold text-slate-700 mb-1">Your Name /
+                  Complainant:</label>
+                <input id="applicant-name" type="text"
+                  class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"
+                  placeholder="Enter your full name">
               </div>
 
-              <!-- Statement of Facts -->
               <div>
-                <label for="facts-description" class="block text-sm font-bold text-slate-800 mb-1">
-                  Statement of Facts / क्या हुआ था विस्तार से बताएं: <span class="text-rose-500">*</span>
-                </label>
-                <textarea id="facts-description" name="facts_description" rows="3" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm" placeholder="Describe the chronological events clearly...">The Complainant has paid all monthly rents promptly. On the incident date, the Landlord unlawfully disconnected electricity and gave an oral eviction ultimatum in direct violation of statutory notice requirements.</textarea>
+                <label for="applicant-address" class="block text-xs font-bold text-slate-700 mb-1">Your Address:</label>
+                <input id="applicant-address" type="text"
+                  class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"
+                  placeholder="Enter your street address, city, state">
               </div>
 
-              <!-- Remedy Demanded -->
               <div>
-                <label for="remedy-sought" class="block text-sm font-bold text-slate-800 mb-1">
-                  Remedy Demanded / क्या मांग या राहत चाहते हैं: <span class="text-rose-500">*</span>
-                </label>
-                <textarea id="remedy-sought" name="remedy_sought" rows="2" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm" placeholder="Demand refund, restoration of utilities, compensation...">Immediate cessation of illegal eviction threats, immediate restoration of electricity, and formal acknowledgment of 30-day statutory tenancy notice period.</textarea>
+                <label for="opposite-name" class="block text-xs font-bold text-slate-700 mb-1">Opposite Party Name
+                  (Landlord/Company):</label>
+                <input id="opposite-name" type="text"
+                  class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"
+                  placeholder="Enter opposite party name">
               </div>
 
-              <!-- Submit Buttons -->
-              <div class="flex items-center justify-end space-x-3 pt-3">
-                <button id="generate-doc-btn" type="submit" class="px-5 py-2.5 rounded-lg text-sm font-bold text-white bg-ashoka-700 hover:bg-ashoka-900 focus:ring-2 focus:ring-ashoka-500 shadow-md">
-                  <i class="fas fa-file-lines mr-1.5" aria-hidden="true"></i> Generate Document Draft
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <!-- Document Preview Card (Hidden initially) -->
-          <div id="document-preview-card" class="hidden bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 gap-3 mb-4">
               <div>
-                <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                  ✓ 2024 Law Grounded Draft Ready
-                </span>
-                <h3 id="preview-doc-title" class="text-base font-bold text-slate-900 mt-1"></h3>
+                <label for="opposite-address" class="block text-xs font-bold text-slate-700 mb-1">Opposite Party
+                  Address:</label>
+                <input id="opposite-address" type="text"
+                  class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"
+                  placeholder="Enter opposite party address">
               </div>
-              <div class="flex items-center space-x-2">
-                <button id="download-pdf-btn" type="button" class="px-4 py-2 rounded-lg text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-sm focus:ring-2 focus:ring-emerald-500 flex items-center">
-                  <i class="fas fa-file-pdf mr-1.5" aria-hidden="true"></i> Download PDF
-                </button>
-                <button id="copy-doc-btn" type="button" class="px-3 py-2 rounded-lg text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-300">
-                  <i class="fas fa-copy mr-1" aria-hidden="true"></i> Copy Text
-                </button>
+
+              <div>
+                <label for="disputed-amount" class="block text-xs font-bold text-slate-700 mb-1">Disputed Deposit /
+                  Fraud Amount (₹):</label>
+                <input id="disputed-amount" type="number"
+                  class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" placeholder="e.g. 50000">
               </div>
+
+              <button type="button" onclick="window.NyayaMitraApp.generateDocument()"
+                class="w-full py-3 rounded-xl bg-saffron-600 hover:bg-saffron-700 text-white font-bold text-sm shadow transition">
+                <i class="fa-solid fa-file-pdf mr-1"></i> Draft 2024 Compliant Document
+              </button>
             </div>
 
-            <!-- Preview Box -->
-            <pre id="preview-doc-text" class="bg-slate-50 border border-slate-200 p-4 rounded-lg text-xs text-slate-800 font-mono whitespace-pre-wrap max-h-96 overflow-y-auto"></pre>
+            <!-- Preview & Downloads -->
+            <div class="lg:col-span-7">
+              <div id="document-preview-card"
+                class="bg-white border border-slate-300 rounded-xl p-6 shadow-sm font-mono text-xs text-slate-800 whitespace-pre-wrap max-h-[500px] overflow-y-auto mb-4">
+                Fill the form details on the left and click "Draft 2024 Compliant Document" to generate legal notice.
+              </div>
+
+              <div class="flex flex-wrap gap-3 mb-4">
+                <button id="download-pdf-btn" type="button" onclick="window.NyayaMitraApp.downloadPdfFile()"
+                  class="px-4 py-2 rounded-lg bg-emerald-600 text-white font-bold text-xs shadow hover:bg-emerald-700 transition">
+                  <i class="fa-solid fa-download mr-1"></i> Print / Download PDF
+                </button>
+                <button id="copy-doc-btn" type="button" onclick="window.NyayaMitraApp.copyDocumentText()"
+                  class="px-4 py-2 rounded-lg bg-slate-800 text-white font-bold text-xs hover:bg-slate-900 transition">
+                  <i class="fa-solid fa-copy mr-1"></i> Copy Text
+                </button>
+              </div>
+
+              <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-900">
+                <h4 class="font-bold mb-1"><i class="fa-solid fa-lightbulb text-amber-600 mr-1"></i> Speed Post Filing
+                  Instructions:</h4>
+                <ol id="filing-instructions-list" class="list-decimal pl-4 space-y-1">
+                  <li>Send notice via Registered Speed Post with Acknowledgment Due (RPAD).</li>
+                  <li>Keep postal tracking receipt safely as legal proof for court.</li>
+                  <li>Allow 15 days statutory compliance time before filing court petition.</li>
+                </ol>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Right 1 Col: Filing Instructions & Guidelines -->
-        <div class="space-y-6">
-          <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-            <h3 class="text-sm font-bold text-ashoka-900 mb-3 flex items-center">
-              <i class="fas fa-stamp text-ashoka-700 mr-2" aria-hidden="true"></i>
-              How to Serve this Notice
-            </h3>
-            <ol id="filing-instructions-list" class="text-xs text-slate-600 space-y-2 list-decimal list-inside">
-              <li>Send via Registered Post with Acknowledgment Due (RPAD) or Speed Post.</li>
-              <li>Keep the postal tracking slip safely; under Section 27 General Clauses Act, delivery is presumed once dispatched.</li>
-              <li>Give 15 days for compliance before filing before Rent Authority or Consumer Forum.</li>
-            </ol>
+      </div>
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- PAGE 3: KANOON KYA KEHTA HAI (LAW EXPLAINER) (#kanoon)   -->
+    <!-- ======================================================== -->
+    <section id="page-kanoon" class="page-view">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+          <h2 class="text-3xl font-extrabold text-earth-900 mb-2">Kanoon Kya Kehta Hai — Plain Language Law Explainer
+          </h2>
+          <p class="text-sm text-slate-600">Ask any law question and get simple, Grade-6 plain language answers grounded
+            in 2024 Indian statutes.</p>
+        </div>
+
+        <!-- Search Input Card -->
+        <div class="glass-panel p-6 rounded-2xl border border-slate-200 shadow-md">
+          <form onsubmit="event.preventDefault(); window.NyayaMitraApp.handleKanoonSearch();" class="space-y-4">
+            <div>
+              <label for="kanoon-query-input"
+                class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                Ask Any Legal Question (Hindi or English):
+              </label>
+              <div class="relative">
+                <input id="kanoon-query-input" type="text" required
+                  class="w-full pl-4 pr-28 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-saffron-600 text-sm text-slate-900"
+                  placeholder="e.g. Can my landlord evict me without 30 days notice in Maharashtra?">
+                <button type="submit"
+                  class="absolute right-2 top-2 px-5 py-2 rounded-lg bg-saffron-600 hover:bg-saffron-700 text-white font-bold text-xs transition">
+                  Ask Law AI <i class="fa-solid fa-paper-plane ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Preset Topics -->
+          <div class="mt-4 pt-4 border-t border-slate-200">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Popular
+              Categories:</span>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" class="scenario-pill"
+                onclick="window.NyayaMitraApp.presetKanoon('What are tenant rights against unlawful lockouts under Model Tenancy Act?')">
+                <i class="fa-solid fa-house text-saffron-500 mr-1"></i> Tenant Rights
+              </button>
+              <button type="button" class="scenario-pill"
+                onclick="window.NyayaMitraApp.presetKanoon('How to get frozen funds back in UPI fraud under BNS Section 318?')">
+                <i class="fa-solid fa-credit-card text-emerald-600 mr-1"></i> Cyber Scam Refund
+              </button>
+              <button type="button" class="scenario-pill"
+                onclick="window.NyayaMitraApp.presetKanoon('What is Zero FIR and can police refuse to register FIR under BNSS 173?')">
+                <i class="fa-solid fa-triangle-exclamation text-rose-600 mr-1"></i> Zero FIR Law
+              </button>
+              <button type="button" class="scenario-pill"
+                onclick="window.NyayaMitraApp.presetKanoon('What is the deadline for replacement of defective electronic item under CPA 2019?')">
+                <i class="fa-solid fa-box text-indigo-600 mr-1"></i> Consumer Rights
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result Output Box -->
+        <div id="kanoon-result-card"
+          class="hidden glass-panel p-6 rounded-2xl border border-saffron-200 bg-saffron-50/30">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-saffron-100">
+            <span class="text-xs font-bold uppercase tracking-wider text-saffron-900 flex items-center">
+              <i class="fa-solid fa-gavel text-saffron-600 mr-2"></i> Statutory Answer (2024 Law)
+            </span>
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">Verified</span>
           </div>
 
-          <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-5">
-            <h3 class="text-sm font-bold text-indigo-950 mb-2">Need Help Filing?</h3>
-            <p class="text-xs text-indigo-900 leading-relaxed mb-3">
-              If the other party refuses to comply, you can file online directly without advocate fees on the Government of India portal:
-            </p>
-            <a href="https://edaakhil.nic.in" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-indigo-700 hover:text-indigo-900 underline">
-              Visit e-Daakhil Consumer Portal <i class="fas fa-arrow-up-right-from-square ml-1 text-[10px]" aria-hidden="true"></i>
+          <div id="kanoon-answer-text" class="text-sm text-slate-800 leading-relaxed font-normal mb-4"></div>
+
+          <div class="bg-white rounded-xl p-4 border border-slate-200 space-y-2 text-xs">
+            <div class="font-bold text-earth-900">Applicable 2024 Statutes:</div>
+            <div id="kanoon-statutes-list" class="flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- PAGE 4: BNS 2024 LAW MATRIX (#bns-matrix)                -->
+    <!-- ======================================================== -->
+    <section id="page-bns-matrix" class="page-view">
+      <div class="max-w-5xl mx-auto space-y-8">
+        <div>
+          <div
+            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 mb-2">
+            <i class="fa-solid fa-arrows-rotate mr-1.5"></i> July 1, 2024 Criminal Law Transformation
+          </div>
+          <h2 class="text-3xl font-extrabold text-earth-900">Purana vs Naya Kanoon (IPC to BNS 2024 Matrix)</h2>
+          <p class="text-sm text-slate-600">On July 1, 2024, IPC 1860 was replaced by Bharatiya Nyaya Sanhita (BNS),
+            CrPC 1973 by BNSS, and IEA 1872 by BSA. Lookup section changes instantly.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="glass-panel p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex gap-3">
+            <input id="bns-search-input" type="text" class="flex-1 px-4 py-3 rounded-xl border border-slate-300 text-sm"
+              placeholder="Type old section (e.g. IPC 420, IPC 302, CrPC 154)...">
+            <button type="button" onclick="window.NyayaMitraApp.searchBnsMatrix()"
+              class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow transition">
+              Convert Law <i class="fa-solid fa-arrows-rotate ml-1"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Key Law Converter Table Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="bns-cards-grid">
+
+          <!-- Card 1: IPC 420 -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+              <span class="text-xs font-extrabold text-rose-600 line-through">Old: IPC Section 420</span>
+              <span class="text-xs font-extrabold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">New: BNS
+                Section 318(4)</span>
+            </div>
+            <h4 class="font-bold text-earth-900 text-sm">Cheating & Financial Fraud</h4>
+            <p class="text-xs text-slate-600">Applies to UPI scams, fake bank calls, non-delivery of paid goods.
+              Punishment extends up to 7 years imprisonment plus fine.</p>
+          </div>
+
+          <!-- Card 2: CrPC 154 (Zero FIR) -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+              <span class="text-xs font-extrabold text-rose-600 line-through">Old: CrPC Section 154</span>
+              <span class="text-xs font-extrabold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">New: BNSS
+                Section 173(1)</span>
+            </div>
+            <h4 class="font-bold text-earth-900 text-sm">Registration of Zero FIR Anywhere</h4>
+            <p class="text-xs text-slate-600">Police CANNOT reject a complaint due to territorial jurisdiction.
+              Mandatory Zero FIR registration with immediate transfer.</p>
+          </div>
+
+          <!-- Card 3: IPC 302 -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+              <span class="text-xs font-extrabold text-rose-600 line-through">Old: IPC Section 302</span>
+              <span class="text-xs font-extrabold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">New: BNS
+                Section 103</span>
+            </div>
+            <h4 class="font-bold text-earth-900 text-sm">Punishment for Murder</h4>
+            <p class="text-xs text-slate-600">Death penalty or life imprisonment. Also includes specific provisions for
+              mob lynching by 5 or more persons under BNS 103(2).</p>
+          </div>
+
+          <!-- Card 4: IPC 498A -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+              <span class="text-xs font-extrabold text-rose-600 line-through">Old: IPC Section 498A</span>
+              <span class="text-xs font-extrabold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">New: BNS
+                Section 85</span>
+            </div>
+            <h4 class="font-bold text-earth-900 text-sm">Cruelty by Husband or Relatives</h4>
+            <p class="text-xs text-slate-600">Protects married women against physical or mental harassment for dowry.
+              Cognizable and non-bailable offense.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================== -->
+    <!-- PAGE 5: NYAYA TRACKER (CASE STATUS CHECKER) (#tracker)  -->
+    <!-- ======================================================== -->
+    <section id="page-tracker" class="page-view">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+          <h2 class="text-3xl font-extrabold text-earth-900 mb-2">Nyaya Tracker — Case & FIR Status Checker</h2>
+          <p class="text-sm text-slate-600">Check court case status, next hearing dates, and police FIR progress across
+            eCourts Services India.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-slate-200 shadow-md">
+          <form onsubmit="event.preventDefault(); window.NyayaMitraApp.handleTrackerSearch();" class="space-y-4">
+            <div>
+              <label for="tracker-cnr-input"
+                class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                Enter CNR Number / Case No / FIR Registration:
+              </label>
+              <div class="flex gap-3">
+                <input id="tracker-cnr-input" type="text" required
+                  class="flex-1 px-4 py-3.5 rounded-xl border border-slate-300 text-sm font-mono"
+                  placeholder="e.g. MHPU010045212024 or FIR-2024-884">
+                <button type="submit"
+                  class="px-6 py-3.5 rounded-xl bg-saffron-600 hover:bg-saffron-700 text-white font-bold text-sm shadow transition">
+                  Track Status <i class="fa-solid fa-magnifying-glass ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Simulated Case Status Card -->
+        <div id="tracker-result-card"
+          class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+            <div>
+              <span class="text-xs font-bold text-slate-400">CNR NUMBER</span>
+              <div id="tracker-cnr-display" class="text-lg font-mono font-extrabold text-earth-900">MHPU010045212024
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Hearing Pending</span>
+            </div>
+          </div>
+
+          <!-- Progress Stepper -->
+          <div>
+            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Case Progression Stage:</h4>
+            <div class="grid grid-cols-4 gap-2 text-center text-xs">
+              <div class="p-3 bg-emerald-100 text-emerald-800 rounded-xl font-bold">
+                1. Filing <i class="fa-solid fa-circle-check text-emerald-600 ml-1"></i>
+              </div>
+              <div class="p-3 bg-emerald-100 text-emerald-800 rounded-xl font-bold">
+                2. Scrutiny <i class="fa-solid fa-circle-check text-emerald-600 ml-1"></i>
+              </div>
+              <div class="p-3 bg-saffron-100 text-saffron-900 rounded-xl font-bold animate-pulse">
+                3. Notice / Hearing <i class="fa-solid fa-hourglass-half text-saffron-600 ml-1"></i>
+              </div>
+              <div class="p-3 bg-slate-100 text-slate-400 rounded-xl font-semibold">4. Judgment</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div><span class="font-bold text-slate-500">Court:</span> <span id="tracker-court-name"
+                class="font-bold text-slate-800">District & Sessions Court</span></div>
+            <div><span class="font-bold text-slate-500">Next Hearing:</span> <span id="tracker-next-date"
+                class="font-bold text-saffron-600">October 14, 2026</span></div>
+            <div><span class="font-bold text-slate-500">Petitioner:</span> <span id="tracker-petitioner-name"
+                class="font-medium text-slate-800">Complainant Citizen</span></div>
+            <div><span class="font-bold text-slate-500">Act:</span> <span class="font-medium text-slate-800">Model
+                Tenancy Act / Sec 329 BNS</span></div>
+          </div>
+
+          <div class="pt-2 flex justify-between items-center text-xs">
+            <a href="https://ecourts.gov.in" target="_blank" rel="noopener noreferrer"
+              class="text-earth-800 font-bold hover:underline">
+              Official eCourts Services Portal <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
             </a>
           </div>
         </div>
 
       </div>
-    </div>
+    </section>
 
-    <!-- ========================================== -->
-    <!-- TAB PANEL 4: 2024 COMPLIANCE & EVALUATOR -->
-    <!-- ========================================== -->
-    <div id="panel-compliance" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-compliance" tabindex="0">
-      <div class="space-y-6">
-        
-        <!-- Scorecard Overview -->
-        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-          <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-slate-200 gap-4">
+
+    <!-- ======================================================== -->
+    <!-- PAGE 6: SAHAYATA EMERGENCY HELPLINES (#sahayata)         -->
+    <!-- ======================================================== -->
+    <section id="page-sahayata" class="page-view">
+      <div class="max-w-5xl mx-auto space-y-8">
+        <div>
+          <div
+            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300 mb-2">
+            <i class="fa-solid fa-headset mr-1.5"></i> 24x7 Statutory National Legal Assistance
+          </div>
+          <h2 class="text-3xl font-extrabold text-earth-900">Sahayata — Emergency Legal Helplines</h2>
+          <p class="text-sm text-slate-600">One-tap direct calls to free government legal aid, cyber crime freeze, and
+            women safety helplines.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Call Card 1: Tele-Law 1516 -->
+          <div
+            class="glass-panel p-6 rounded-2xl border border-amber-200 bg-amber-50/40 flex flex-col justify-between space-y-4">
             <div>
-              <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                <i class="fas fa-check-double mr-1.5" aria-hidden="true"></i> 100/100 Evaluation Benchmark
+              <div
+                class="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center text-xl font-bold mb-3 shadow">
+                <i class="fa-solid fa-scale-unbalanced"></i>
               </div>
-              <h2 class="text-xl font-extrabold text-ashoka-900 mt-2">
-                Evaluator Proof & Statutory Compliance (2024)
-              </h2>
+              <h3 class="text-lg font-bold text-earth-900">Tele-Law Helpline (1516)</h3>
               <p class="text-xs text-slate-600 mt-1">
-                Real-time verification ensuring 0 hallucinations of repealed British-era laws (IPC 1860, CrPC 1973, Evidence Act 1872).
+                Free consultation with panel advocates provided by the Ministry of Law & Justice, Govt of India.
               </p>
             </div>
-
-            <!-- Score Pill -->
-            <div class="flex items-center space-x-3 bg-emerald-50 border border-emerald-300 px-4 py-2.5 rounded-xl">
-              <div class="text-3xl font-extrabold text-emerald-700">100%</div>
-              <div class="text-xs text-emerald-900 font-semibold">
-                <div>Zero Hallucinations</div>
-                <div class="text-emerald-700">50/50 Scenarios Passed</div>
-              </div>
-            </div>
+            <a href="tel:1516"
+              class="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-center font-bold text-xs shadow transition block">
+              <i class="fa-solid fa-phone mr-1.5"></i> Dial 1516 (Free)
+            </a>
           </div>
 
-          <!-- 6 Hackathon Rubric Parameters Verification Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-            <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-700 uppercase">1. Accessibility</span>
-                <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">100/100</span>
+          <!-- Call Card 2: Cyber Crime 1930 -->
+          <div
+            class="glass-panel p-6 rounded-2xl border border-rose-200 bg-rose-50/40 flex flex-col justify-between space-y-4">
+            <div>
+              <div
+                class="w-12 h-12 rounded-xl bg-rose-600 text-white flex items-center justify-center text-xl font-bold mb-3 shadow">
+                <i class="fa-solid fa-shield-cat"></i>
               </div>
-              <p class="text-xs text-slate-600">Strict WCAG 2.1 AA, semantic role="tablist", explicit &lt;label htmlFor&gt;, aria-live="polite", prefers-reduced-motion.</p>
+              <h3 class="text-lg font-bold text-earth-900">National Cyber Helpline (1930)</h3>
+              <p class="text-xs text-slate-600 mt-1">
+                Report online bank & UPI scams immediately within the golden 24-hr window to freeze stolen funds.
+              </p>
             </div>
-
-            <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-700 uppercase">2. Security</span>
-                <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">100/100</span>
-              </div>
-              <p class="text-xs text-slate-600">Upstash Redis sliding-window rate limit (30 req/min), strict CSP, X-Frame-Options: DENY, zero hardcoded secrets.</p>
-            </div>
-
-            <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-700 uppercase">3. Efficiency</span>
-                <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">100/100</span>
-              </div>
-              <p class="text-xs text-slate-600">Small-to-large routing (Llama 8B intake sub-100ms → Llama 70B drafting). Lightweight responsive footprint &lt;10MB.</p>
-            </div>
-
-            <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-700 uppercase">4. Testing</span>
-                <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">100/100</span>
-              </div>
-              <p class="text-xs text-slate-600">100% passing Pytest suite + 50 legal evaluation query scenarios in evals/legal_queries.json.</p>
-            </div>
-
-            <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-700 uppercase">5. Alignment</span>
-                <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">100/100</span>
-              </div>
-              <p class="text-xs text-slate-600">Strict 2024 Indian Law mandate: BNS, BNSS, BSA, Model Tenancy Act, CPA 2019, Tele-Law 1516 escalation.</p>
-            </div>
-
-            <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-700 uppercase">6. Code Quality</span>
-                <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">100/100</span>
-              </div>
-              <p class="text-xs text-slate-600">Clean modular separation (/routers, /services, /models, /middleware). Zero console.log, zero TODOs.</p>
-            </div>
+            <a href="tel:1930"
+              class="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-center font-bold text-xs shadow transition block">
+              <i class="fa-solid fa-phone mr-1.5"></i> Dial 1930 (Immediate)
+            </a>
           </div>
+
+          <!-- Call Card 3: NALSA 15100 -->
+          <div
+            class="glass-panel p-6 rounded-2xl border border-emerald-200 bg-emerald-50/40 flex flex-col justify-between space-y-4">
+            <div>
+              <div
+                class="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xl font-bold mb-3 shadow">
+                <i class="fa-solid fa-gavel"></i>
+              </div>
+              <h3 class="text-lg font-bold text-earth-900">NALSA Legal Aid (15100)</h3>
+              <p class="text-xs text-slate-600 mt-1">
+                National Legal Services Authority helpline providing free lawyers for court representation to eligible
+                citizens.
+              </p>
+            </div>
+            <a href="tel:15100"
+              class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-center font-bold text-xs shadow transition block">
+              <i class="fa-solid fa-phone mr-1.5"></i> Dial 15100 (Free Lawyer)
+            </a>
+          </div>
+
+          <!-- Call Card 4: Women Helpline 1091 -->
+          <div
+            class="glass-panel p-6 rounded-2xl border border-purple-200 bg-purple-50/40 flex flex-col justify-between space-y-4">
+            <div>
+              <div
+                class="w-12 h-12 rounded-xl bg-purple-600 text-white flex items-center justify-center text-xl font-bold mb-3 shadow">
+                <i class="fa-solid fa-person-dress"></i>
+              </div>
+              <h3 class="text-lg font-bold text-earth-900">Women Legal Helpline (1091)</h3>
+              <p class="text-xs text-slate-600 mt-1">
+                24x7 emergency helpline for women facing domestic violence, harassment, or safety threats under BNS
+                2023.
+              </p>
+            </div>
+            <a href="tel:1091"
+              class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-center font-bold text-xs shadow transition block">
+              <i class="fa-solid fa-phone mr-1.5"></i> Dial 1091
+            </a>
+          </div>
+
+          <!-- Call Card 5: National Consumer Helpline 1915 -->
+          <div
+            class="glass-panel p-6 rounded-2xl border border-sky-200 bg-sky-50/40 flex flex-col justify-between space-y-4">
+            <div>
+              <div
+                class="w-12 h-12 rounded-xl bg-sky-600 text-white flex items-center justify-center text-xl font-bold mb-3 shadow">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </div>
+              <h3 class="text-lg font-bold text-earth-900">Consumer Helpline (1915)</h3>
+              <p class="text-xs text-slate-600 mt-1">
+                Lodge formal complaints against sellers, fake products, or non-refunds under Consumer Protection Act
+                2019.
+              </p>
+            </div>
+            <a href="tel:1915"
+              class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-center font-bold text-xs shadow transition block">
+              <i class="fa-solid fa-phone mr-1.5"></i> Dial 1915
+            </a>
+          </div>
+
+          <!-- DLSA Info Box -->
+          <div class="glass-panel p-6 rounded-2xl border border-slate-200 flex flex-col justify-between space-y-4">
+            <div>
+              <div
+                class="w-12 h-12 rounded-xl bg-earth-900 text-white flex items-center justify-center text-xl font-bold mb-3 shadow">
+                <i class="fa-solid fa-building-columns"></i>
+              </div>
+              <h3 class="text-lg font-bold text-earth-900">District Legal Aid (DLSA)</h3>
+              <p class="text-xs text-slate-600 mt-1">
+                Every District Court in India has a DLSA office. Citizens earning less than ₹3 Lakhs/year get 100% free
+                advocate representation.
+              </p>
+            </div>
+            <a href="https://nalsa.gov.in" target="_blank" rel="noopener noreferrer"
+              class="w-full py-3 rounded-xl bg-earth-900 hover:bg-earth-950 text-white text-center font-bold text-xs shadow transition block">
+              Find Nearest DLSA Office <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+            </a>
+          </div>
+
         </div>
-
-        <!-- Interactive Citation Validator Tool -->
-        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-          <h3 class="text-base font-bold text-ashoka-900 mb-2">
-            Live Citation Hallucination Inspector
-          </h3>
-          <p class="text-xs text-slate-600 mb-4">
-            Test any legal text below. The engine will detect if repealed statutes (like Section 420 IPC) are present or if 2024 BNS is correctly cited.
-          </p>
-
-          <div class="space-y-3">
-            <label for="citation-test-input" class="block text-xs font-semibold text-slate-700">Enter Legal Text to Audit:</label>
-            <textarea id="citation-test-input" rows="3" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-mono" placeholder="e.g. This offense is punishable under Section 420 IPC... or Section 318 BNS 2023...">This dispute involves criminal breach of trust under Section 318 BNS, 2023 and procedural notice under Section 173(1) BNSS, 2023.</textarea>
-            
-            <div class="flex items-center justify-between">
-              <div class="flex gap-2">
-                <button type="button" onclick="window.NyayaMitraApp.loadSampleCitation(true)" class="text-xs px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 font-semibold text-slate-700">
-                  Load 2024 BNS Sample (Pass)
-                </button>
-                <button type="button" onclick="window.NyayaMitraApp.loadSampleCitation(false)" class="text-xs px-2.5 py-1 rounded bg-rose-50 hover:bg-rose-100 font-semibold text-rose-700">
-                  Load Repealed IPC Sample (Fail)
-                </button>
-              </div>
-              <button type="button" onclick="window.NyayaMitraApp.runCitationAudit()" class="px-4 py-2 rounded-lg text-xs font-bold text-white bg-ashoka-700 hover:bg-ashoka-900">
-                Audit Citations Now
-              </button>
-            </div>
-
-            <!-- Audit Output Result Box -->
-            <div id="citation-audit-result" class="p-4 rounded-lg bg-emerald-50 border border-emerald-300 text-xs text-emerald-900">
-              <div class="flex items-center space-x-2 font-bold mb-1">
-                <span class="text-emerald-700">✓ 100% 2024 Legal Compliance</span>
-              </div>
-              <p>No repealed Indian Penal Code (IPC) or CrPC provisions detected. Grounded on Bharatiya Nyaya Sanhita, 2023.</p>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
+    </section>
 
   </main>
 
-  <!-- Accessible Footer -->
-  <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-xs" role="contentinfo">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center space-x-2">
-        <span class="font-bold text-white">NyayaMitra (न्यायमित्र)</span>
-        <span>•</span>
-        <span>Public Legal Tech & Citizen Empowerment Initiative</span>
+  <!-- Global Accessible Footer (Deep Earth Brown Theme) -->
+  <footer class="bg-earth-950 text-slate-400 py-10 border-t border-earth-900 mt-auto" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center space-x-2 text-white font-extrabold text-lg mb-2">
+            <img src="/logo.png" alt="NyayaMitra Logo" class="h-8 w-auto object-contain">
+            <span class="text-saffron-500 font-devanagari">न्यायमित्र</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            AI for Legal Assistance & Access in India. Grounded strictly on 2024 Indian Enactments (BNS, BNSS, BSA & CPA
+            2019).
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Quick Navigation</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li><a href="#home" class="hover:text-saffron-400 transition">Home</a></li>
+            <li><a href="#assistant" class="hover:text-saffron-400 transition">3-Step Legal Assistant</a></li>
+            <li><a href="#kanoon" class="hover:text-saffron-400 transition">Kanoon Kya Kehta Hai (Law Explainer)</a>
+            </li>
+            <li><a href="#bns-matrix" class="hover:text-saffron-400 transition">BNS 2024 Law Matrix</a></li>
+            <li><a href="#tracker" class="hover:text-saffron-400 transition">Nyaya Tracker</a></li>
+            <li><a href="#sahayata" class="hover:text-saffron-400 transition">Sahayata Helplines</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Legal Disclaimer & Compliance</h4>
+          <p class="text-[11px] text-slate-400 leading-relaxed">
+            NyayaMitra is an AI legal information tool and does not provide formal attorney-client advice. For
+            representation in court, consult an advocate or contact Tele-Law 1516 / DLSA.
+          </p>
+        </div>
       </div>
-      <div class="flex flex-wrap items-center gap-4 text-xs">
-        <a href="/accessibility/statement.html" class="hover:text-white underline">Accessibility Statement (WCAG 2.1 AA)</a>
-        <a href="tel:1516" class="hover:text-white underline">Tele-Law 1516</a>
-        <a href="tel:15100" class="hover:text-white underline">NALSA 15100</a>
-        <a href="https://cybercrime.gov.in" target="_blank" rel="noopener noreferrer" class="hover:text-white underline">CyberCrime.gov.in</a>
+
+      <div
+        class="pt-6 border-t border-earth-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+        <div>© 2026 NyayaMitra (न्यायमित्र). Built for Citizen Access & Legal Empowerment.</div>
+        <div class="mt-2 sm:mt-0 flex space-x-4">
+          <span>WCAG 2.1 AA Compliant</span>
+          <span>Article 39A Indian Constitution</span>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- Application Logic -->
+  <!-- Application Controller JavaScript -->
   <script src="/static/app.js"></script>
 </body>
+
 </html>

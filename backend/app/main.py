@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.middleware.security import SecurityHeadersMiddleware, SlidingWindowRateLimitMiddleware
-from app.routers import intake, rights, documents, escalation, compliance
+from app.routers import intake, rights, documents, escalation, compliance, kanoon, bns_matrix, tracker
 
 app = FastAPI(
     title="NyayaMitra (न्यायमित्र) Legal Tech API",
@@ -31,6 +31,10 @@ app.include_router(rights.router)
 app.include_router(documents.router)
 app.include_router(escalation.router)
 app.include_router(compliance.router)
+app.include_router(kanoon.router)
+app.include_router(bns_matrix.router)
+app.include_router(tracker.router)
+
 
 
 @app.get("/api/health", tags=["Health"])

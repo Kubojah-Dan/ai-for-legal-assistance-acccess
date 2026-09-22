@@ -1,74 +1,206 @@
-/* NyayaMitra Accessible Stylesheet conforming to WCAG 2.1 AA */
+/* NyayaMitra (न्यायमित्र) - Premium Indian Tricolor & Warm Earth Palette */
+/* Conforming strictly to WCAG 2.1 AA and Modern Aesthetics */
 
 :root {
-  /* India's Tricolor Palette + supporting tones */
-  --saffron-500: #f97316;
+  /* Warm Earth & Indian Tricolor Palette */
+  --earth-brown-950: #120c08;
+  --earth-brown-900: #1c130e;
+  --earth-brown-800: #2a1d17;
+  --earth-brown-700: #3d2a21;
+
+  --saffron-700: #c84d08;
   --saffron-600: #ea580c;
-  --ashoka-900: #0f172a; /* deep navy */
-  --ashoka-700: #1e3a8a;
-  --indgreen-500: #16a34a; /* emerald */
-  --bg-color: #f7fafc;
-  --glass-bg: rgba(255,255,255,0.6);
-  --glass-border: rgba(255,255,255,0.18);
-  --text-main: #0f172a;
+  --saffron-500: #f97316;
+  --saffron-100: #ffedd5;
+  --saffron-50: #fff7ed;
+
+  --emerald-700: #0b7a55;
+  --emerald-600: #059669;
+  --emerald-500: #10b981;
+  --emerald-100: #d1fae5;
+  --emerald-50: #ecfdf5;
+
+  --gold-600: #d97706;
+  --gold-500: #f59e0b;
+  --gold-100: #fef3c7;
+
+  --bg-cream: #fbf9f5;
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748b;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+
+  --glass-bg-light: rgba(255, 255, 255, 0.9);
+  --glass-bg-dark: rgba(28, 19, 14, 0.88);
+  --glass-border-light: rgba(226, 232, 240, 0.8);
+  --glass-border-dark: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 10px 30px -5px rgba(28, 19, 14, 0.08);
 }
 
-/* 1. Skip Link (Visible upon keyboard Tab) */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 10px;
-  background: var(--ashoka-700);
-  color: #ffffff;
-  padding: 10px 16px;
+/* 1. Base Setup & Warm Cream Background */
+body {
+  background-color: var(--bg-cream);
+  color: var(--slate-900);
+  font-family: 'Plus Jakarta Sans', 'Mukta', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Devanagari font helper */
+.font-devanagari {
+  font-family: 'Mukta', sans-serif;
+}
+
+/* 2. Tricolor Top Accent Line */
+.tricolor-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #ea580c 0%, #f59e0b 35%, #ffffff 50%, #10b981 100%);
+  width: 100%;
+}
+
+/* 3. Glassmorphism UI Components */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 30px -5px rgba(28, 19, 14, 0.05);
+}
+
+.glass-panel-dark {
+  background: rgba(28, 19, 14, 0.92);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero Dark Earth Card */
+.hero-earth-card {
+  background: linear-gradient(135deg, #1c130e 0%, #2a1d17 50%, #17100b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* 4. Page Architecture (Multi-Page Navigation) */
+.page-view {
+  display: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+
+.page-view.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 5. Sleek Hover Navigation Bar Links (Compact Icon + Expanding Label) */
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 700;
-  border-radius: 6px;
-  z-index: 100;
+  color: var(--slate-700);
+  border-radius: 0.75rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
-  transition: top 0.2s ease-in-out;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
 }
 
-.skip-link:focus {
-  top: 10px;
-  outline: 3px solid #f97316;
-  outline-offset: 2px;
+.nav-link:hover {
+  color: var(--saffron-600);
+  background-color: var(--saffron-50);
+  transform: translateY(-1px);
 }
 
-/* 2. Strict Focus Visibility for Keyboard Navigation (Zero-Tolerance WCAG 2.1 AA) */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible,
-[tabindex="0"]:focus-visible {
-  outline: 3px solid #2563eb !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3) !important;
+.nav-link.active {
+  color: var(--saffron-600);
+  background-color: var(--saffron-100);
+  font-weight: 800;
+  box-shadow: 0 2px 4px rgba(234, 88, 12, 0.1);
 }
 
-/* 3. ARIA Tabs Styling */
+/* Hover-Reveal Text Label Helper */
+.nav-link-icon {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.nav-link:hover .nav-link-icon {
+  transform: scale(1.15);
+  color: var(--saffron-600);
+}
+
+/* Mobile Nav Link */
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--slate-800);
+  border-radius: 0.5rem;
+}
+
+.mobile-nav-link.active {
+  background-color: var(--earth-brown-900);
+  color: #ffffff;
+}
+
+/* 6. Scenario Chips & Badges */
+.scenario-pill {
+  font-size: 0.775rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  color: var(--slate-800);
+  border: 1px solid var(--slate-200);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.scenario-pill:hover {
+  background-color: var(--saffron-50);
+  color: var(--saffron-600);
+  border-color: var(--saffron-400);
+  transform: translateY(-1px);
+}
+
+.scenario-pill.active {
+  background-color: var(--saffron-500);
+  color: #ffffff;
+  border-color: var(--saffron-600);
+}
+
+/* 7. ARIA Pipeline Tabs */
 .pipeline-tab {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.25rem;
-  border-bottom: 2px solid transparent;
-  color: #64748b;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 3px solid transparent;
+  color: var(--slate-600);
   font-weight: 600;
   font-size: 0.875rem;
   transition: all 0.2s ease;
-  border-radius: 0.5rem 0.5rem 0 0;
+  background-color: transparent;
 }
 
 .pipeline-tab:hover {
-  color: #1e3a8a;
-  background-color: #f1f5f9;
+  color: var(--earth-brown-900);
+  background-color: rgba(241, 245, 249, 0.7);
 }
 
 .pipeline-tab.active {
-  color: #1e3a8a;
-  border-bottom: 3px solid #1e3a8a;
+  color: var(--saffron-600);
+  border-bottom-color: var(--saffron-600);
+  font-weight: 800;
   background-color: #ffffff;
 }
 
@@ -76,86 +208,90 @@ select:focus-visible,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.6rem;
+  height: 1.6rem;
   border-radius: 9999px;
-  background-color: #e2e8f0;
-  color: #475569;
+  background-color: var(--slate-200);
+  color: var(--slate-700);
   font-size: 0.75rem;
   margin-right: 0.5rem;
   font-weight: 800;
 }
 
 .pipeline-tab.active .tab-step {
-  background-color: #1e3a8a;
+  background-color: var(--saffron-600);
   color: #ffffff;
 }
 
-/* 4. Scenario Pills */
-.scenario-pill {
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.375rem 0.75rem;
-  border-radius: 9999px;
-  background-color: #f1f5f9;
-  color: #334155;
-  border: 1px solid #cbd5e1;
-  cursor: pointer;
-  transition: all 0.15s ease;
+/* 8. Hero Image Container */
+.hero-image-container {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
-.scenario-pill:hover {
-  background-color: #e2e8f0;
-  color: #0f172a;
-  border-color: #94a3b8;
+.hero-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
-/* 5. Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+.hero-image-container:hover img {
+  transform: scale(1.03);
 }
 
-/* Glassmorphism utility */
-.glass-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(8px) saturate(120%);
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 24px rgba(16,24,40,0.06);
+.hero-overlay-badge {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  background: rgba(28, 19, 14, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.875rem;
+  padding: 1rem;
+  color: #ffffff;
 }
 
-/* Page container helper */
-.page { display: none; }
-.page.active { display: block; }
+/* 9. WCAG 2.1 AA Accessibility & Keyboard Focus */
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 10px;
+  background: var(--earth-brown-900);
+  color: #ffffff;
+  padding: 12px 20px;
+  font-weight: 700;
+  border-radius: 8px;
+  z-index: 1000;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
 
-/* Hero animation */
-.hero-animate { animation: floatY 6s ease-in-out infinite; }
-@keyframes floatY { 0%{ transform: translateY(0);} 50%{ transform: translateY(-6px);} 100%{ transform: translateY(0);} }
+.skip-link:focus {
+  top: 10px;
+  outline: 3px solid var(--saffron-500);
+  outline-offset: 2px;
+}
 
-/* 6. High Contrast Support */
-@media (prefers-contrast: more) {
-  body {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-  }
-  
-  .pipeline-tab.active {
-    border-bottom: 4px solid #000000 !important;
-    color: #000000 !important;
-  }
-  
-  a, button {
-    border: 2px solid #000000 !important;
-  }
-  
-  input, textarea, select {
-    border: 2px solid #000000 !important;
-  }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 3px solid var(--saffron-600) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.3) !important;
+}
+
+/* Print Styles for Legal Notices */
+@media print {
+  body { background: white; color: black; }
+  header, footer, nav, .no-print { display: none !important; }
+  .page-view { display: block !important; opacity: 1 !important; transform: none !important; }
+  #panel-document { display: block !important; }
 }
